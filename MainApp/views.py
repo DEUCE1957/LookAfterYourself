@@ -10,4 +10,10 @@ def blog(request):
 def tips(request):
     return HttpResponse("This is the Look After Yourself tips page")
 
+def supportservices(request):
+    return HttpResponse("This is the Look After Yourself support services page")
+
+def calendar(request):
+    return HttpResponse("This is the Look After Yourself calendar page")
+
 # Create your views here.
