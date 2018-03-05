@@ -6,7 +6,7 @@ def index(request):
     return render(request,'MainApp/index.html', context=context_dict)
 
 def blog(request):
-    return HttpResponse("This is the Look After Yourself blog page")
+    return render(request,'MainApp/blog.html', context={})
 
 def tips(request):
     return HttpResponse("This is the Look After Yourself tips page")
@@ -16,5 +16,8 @@ def support(request):
 
 def calendar(request):
     return HttpResponse("This is the Look After Yourself calendar page")
+
+def login(request):
+    return HttpResponse("This is the Look After Yourself login page")
 
 # Create your views here.

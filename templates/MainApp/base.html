@@ -1,65 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <style>
-    h1 {
-        font-size:60px;
-        color: #2b8a11;
-        margin:0;
-        padding:0;
-    }
-    h2 {
-        font-size:40px;
-        color: black;
-        margin:0;
-        padding:0;
-    }
 
-    #Menu {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333333;
-    }
-
-    #MenuItem {
-        float: left;
-    }
-
-    #MenuItem a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 16px;
-        text-decoration: none;
-    }
-
-    #MenuItem a:hover {
-        background-color: #111111;
-    }
-
-    #FooterItem {
-        float:left;
-        margin:10px;
-    }
-
-    #FooterItem a {
-        color:green;
-    }
-    #FooterItem a:hover {
-        color:#cf23ff;
-    }
-    img {
-        border: 4px solid black;
-    }
 </style>
 
-<header>
+<head>
     <title> Look After Yourself
             {% block title_block %}
             {% endblock %}
     </title>
-</header>
+    <!-- Links Default CSS Sheet -->
+    <link href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/default.css" rel="stylesheet" type="text/css">
+</head>
 
     <body>
         <!-- Main Titles -->
@@ -72,26 +25,27 @@
         <!-- The Horizontal Menu bar -->
 
                 <ul id="Menu">
-                    <li id="MenuItem"><a href="/blog/">Blog</a></li>
-                    <li id="MenuItem"><a href="/tips/">Tips</a></li>
-                    <li id="MenuItem"><a href="/calendar/">Calendar</a></li>
-                    <li id="MenuItem"><a href="/support/">SupportServices</a></li>
+                    <li id="MenuItem"><a href="/blog/"><b>Blog</b></a></li>
+                    <li id="MenuItem"><a href="/tips/"><b>Tips</b></a></li>
+                    <li id="MenuItem"><a href="/calendar/"><b>Calendar</b></a></li>
+                    <li id="MenuItem"><a href="/support/"><b>Support Services</b></a></li>
+                    <li id="MenuUser"><a href="/login/"><b>Log in</b></a></li>
                 </ul>
         {% block body_block %}
 
         {% endblock %}
 
         <!-- Footer Bar -->
-            <hr>
-            <h3 style="text-align:left;margin:0;padding:0;"> Site Map </h3>
-            <div>
-                <ul style="list-style-type:none;color:black;margin:0;padding:0">
+        <div>
+                <ul id="Footer" style="list-style-type:none;color:black;margin:0;padding:0">
                 <li id="FooterItem"><a href="/blog/">Blog</a></li>
                 <li id="FooterItem"><a href="/tips/">Tips</a></li>
                 <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
-                <li id="FooterItem"><a href="/support/">SupportServices</a></li>
+                <li id="FooterItem"><a href="/support/">Support Services</a></li>
+                <li id="FooterItem"><a href="/login/">Log in</a></li>
                 </ul>
-            </div>
-
+        </div>
+        <br>
+        <p style="color:white"> &copy Web Application Development 2 - Team 3 Lab C</p>
     </body>
 </html>
