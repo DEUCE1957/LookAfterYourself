@@ -12,10 +12,10 @@ def tips(request):
     return HttpResponse("This is the Look After Yourself tips page")
 
 def support(request):
-    return HttpResponse("This is the Look After Yourself support services page")
+    return render(request,'MainApp/bootstrap.html', context={})
 
 def calendar(request):
-    return HttpResponse("This is the Look After Yourself calendar page")
+    return render(request,'MainApp/calendar.html', context={})
 
 def login(request):
     return HttpResponse("This is the Look After Yourself login page")

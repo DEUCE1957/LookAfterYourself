@@ -53,11 +53,11 @@ ul {
 }
 
 a {
-    color:#8EFF6B;
+    color:gray;
     text-decoration:underline;
 }
 a:hover {
-    color:#33DB00;
+    color:maroon;
     text-decoration:underline;
 }
 
