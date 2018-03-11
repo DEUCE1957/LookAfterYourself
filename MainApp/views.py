@@ -3,8 +3,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-import httplib2
-import os
+##import httplib2
+##import os
 
 ##from apiclient import discovery
 ##from oauth2client import client
