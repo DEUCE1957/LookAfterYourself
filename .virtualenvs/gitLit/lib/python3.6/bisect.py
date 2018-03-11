@@ -1,1 +1,1 @@
-C:/usr/lib/python3.6/bisect.py
+/usr/lib/python3.6/bisect.py

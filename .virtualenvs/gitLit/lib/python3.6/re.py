@@ -1,1 +1,1 @@
-C:/usr/lib/python3.6/re.py
+/usr/lib/python3.6/re.py
