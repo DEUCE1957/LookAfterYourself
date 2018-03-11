@@ -1,1 +1,1 @@
-/usr/lib/python2.7/types.py
+C:/usr/lib/python2.7/types.py

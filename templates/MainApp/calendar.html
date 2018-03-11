@@ -7,6 +7,15 @@ Calendar
 {% endblock %}
 
 {% block body_block %}
+{% if name and time %}
+{{name}}</br>
+{{time}}</br>
+{% else %}
+<p>No event found</p>
+{% endif %}
+
 <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
 style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
 {% endblock %}

@@ -1,1 +1,1 @@
-/usr/lib/python2.7/sre.py
+C:/usr/lib/python2.7/sre.py

@@ -1,1 +1,1 @@
-/usr/lib/python2.7/_abcoll.py
+C:/usr/lib/python2.7/_abcoll.py
