@@ -50,7 +50,7 @@ def blog(request):
     return render(request,'MainApp/blog.html', context={})
 
 def tips(request):
-    return HttpResponse("This is the Look After Yourself tips page")
+    return HttpResponse(request,'MainApp/tips.html', context={})
 
 def support(request):
     return render(request,'MainApp/bootstrap.html', context={})
