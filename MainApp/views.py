@@ -69,7 +69,8 @@ def calendar(request):
     event = eventsResult.get('items', [])[0]
     contextDict["name"] = event["summary"]
     contextDict["time"] = event["start"]["dateTime"]
-    print(event)
+    contextDict["description"] = event.get("description","")
+    contextDict["color"] = event.get("colorId", "#ffffff")
     return render(request,'MainApp/calendar.html', context=contextDict)
 
 def login(request):
