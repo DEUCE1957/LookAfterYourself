@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "midyear-psyche-197709",
+  "private_key_id": "812bf4481a2c9899825f02b7ee6142dbbf82aacf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCptkihib7osj5k\nSuizWxJIBF6+6BmnBUtaxg0rRMqdhtif1l647gCZo9j+9EOsTKC6Ms6GFpZgzjrI\n3mqkCsIexKq8K4LyFx0RXzdg1NVDQbzDH0PGNJz1K3Co0kXuAEs5laLBMikLCx0t\nM1Q4gF447iaiKr8/srTEasKq04c71g/Hp8vGlfRwMwpk8XqMDXuF2wmfSDilZKRe\nvaq8C/MqeRWPl71abI1HHYP14L13LhciRfg3cM7rswhgFkLYdzDwdvDPgQl5MRBH\nV67nZ/3yWRAFOMWbxlAvcvEAJcnz7S72DF9+GPGcl8RDVHEmX8cf0ewaLHOhdqUN\nGG8N8psNAgMBAAECggEABfmKJI/AJhqSWj8N4rSX1+u5dzCeKJRl4v/6ejW9iV60\nNSpbotiUMlSDoPQyBria5vs/bJaSfD1+cdBswjIzw9gKJ75Daaj5J8GppjHQAUJo\n9hidbvauuO3q1TKz7g1aGKClPnZ43e/p+sumESgpyQjPWOG24nP0675TdKamSeuw\na17ji+x1deRmGajE+x97I9wrujFyj4j2B05swl/7vvlrETTLDgyRRSLcuw2CsHnw\nqMwOxcTvzbtdFcV5Y0L31++Q0xswKqbxMQ/ZkbnKMTH93VbCqt76gqlbS8V2ACo9\nUikdqJ6RF0vxQqGKBVhM3kN+UVtUyzvCYu5C92qfoQKBgQDWY0UxmBHJVwoIIeBN\nHS1NeYygRmyE0WbFvk6HD+ViLe8DuIzrg/GOkeSnHIZEO4kKgic1jJnz4vpn4DfE\ncMyMdJhaWpu646RlHJx4A81a0KTfT49lR1/sleGAZ4rhfYoGjNrQozU7QEwdEnCO\nqwVcoc9a5ERfigpbV1Jz1dUsLQKBgQDKpx4uIfpR8uyYSzyZw7RoJoM3WXL1/JlB\nJwb5MvYX8JDVVAU3GfR7iXat3oOHE3b89F24LHBTUWC+VM/pz4Ih5qVHTJcNv7pY\nAYjo4S2+kRwQm2gwk67wVIqX1QTlHq3GwROeznAE0hHzTDUPEhrX1LVqwPGhsKxS\nu1UYr4UWYQKBgQCXm/gwzEO3yK+1dI90uS9yXITQSz0u6A7vxFcwOFOVDLq8POSb\nIOHQWugCLa/dzORq5APqYJX23QsMLooBh2t/4GxlaTI8BgQZ5RPZ44ZztJ0DtvXH\nP6RcYNnpvk9+ixLy8uVDKkfYsO2imYmzusm96kgDFO4tSids1OHgPNXVuQKBgE2a\nASyZRknrRD5tUR9wmbzoQocHccZQnD8eusTihupT7KJEMlsPTVehJBkghC1NftsO\nmHTWT40YNHut7pASLjrdH51V7uIM8UaSD+Ndly7KUnzphdRUOUE+nnPV1rIGNXVO\nqjy9wJeX+de47vh+blkH0xC2IdFQ3iwwID37uHMBAoGAYFicnzelegNyO5Lrr56E\nRH5XHq5xDIvwx7MD0xl1BQVuzEdtBs79sfrFrFB9WoxL8TwERCjkj1U4SbO0RiIM\nolgnUfhPfud22hDOb0KrMRdVIFbrkQ8her3iqIHCjU23P/SMT0a+I1B/fpy7ZhZV\nPeDLC9ZlLdeG3BTsXUEomz4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "calendaradmin@midyear-psyche-197709.iam.gserviceaccount.com",
+  "client_id": "103071393613164201122",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calendaradmin%40midyear-psyche-197709.iam.gserviceaccount.com"
+}
