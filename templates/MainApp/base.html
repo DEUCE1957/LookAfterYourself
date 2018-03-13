@@ -33,6 +33,9 @@
     <!-- Links Custom Flickity CSS Sheet -->
     <link rel="stylesheet" href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/flickity.css">
 
+    <!-- Links Custom Flickity CSS Sheet -->
+    <link rel="stylesheet" href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/tips.css">
+
     {% block script_block %}
     {% endblock %}
 
@@ -40,8 +43,13 @@
     <link href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/default.css" rel="stylesheet" type="text/css" />
 
     <style>
-    {% block style_block %}
-    {% endblock %}
+        .btn-block+.btn-block{
+            margin-top:0;
+        }
+        .btn {
+            background-color:#008C8C;
+            border:1px solid black;
+        }
     </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,6 +62,7 @@
         <h2> The Mental Health Support Application</h2>
         <p style="margin:0;padding:0"> <strong> {{custom_message}}</strong> </p>
         </div>
+        <br>
 
         <!-- The Horizontal Menu bar -->
         <div class="btn-group btn-group-lg" style="width:100%;" >

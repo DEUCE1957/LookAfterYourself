@@ -53,7 +53,7 @@ def tips(request):
     return render(request,'MainApp/tips.html', context={})
 
 def support(request):
-    return render(request,'MainApp/bootstrap.html', context={})
+    return render(request,'MainApp/support.html', context={})
 
 def calendar(request):
     contextDict = {}
