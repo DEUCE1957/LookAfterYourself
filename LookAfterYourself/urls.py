@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^support', views.support, name='support'),
     url(r'^calendar', views.calendar, name='calendar'),
     url(r'^login', views.login, name='login'),
+    url(r'^submittip', views.submittip, name='submittip'),
     url(r'^LookAfterYourself/', include('MainApp.urls')),
     url(r'^admin/',admin.site.urls),
 ]

@@ -52,6 +52,9 @@ def blog(request):
 def tips(request):
     return render(request,'MainApp/tips.html', context={})
 
+def submittip(request):
+    return render(request, 'MainApp/submittip.html', context={})
+
 def support(request):
     return render(request,'MainApp/support.html', context={})
 
