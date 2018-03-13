@@ -13,7 +13,7 @@ body {
 	margin: 20px auto;
 }
 
-div#columns figure {
+div#columns tip {
 	background: #fefefe;
 	border: 2px solid #fcfcfc;
 	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
@@ -25,23 +25,26 @@ div#columns figure {
   column-break-inside: avoid;
 }
 
-div#columns figure figtitle {
+div#columns tip tiptitle {
     font-size: 1.3rem;
     color: #212020;
     line-height: 1.5;
 }
 
-div#columns figure figcaption {
+div#columns tip tipcaption {
   font-size: .9rem;
 	color: #444;
   line-height: 1.5;
 }
 
-div#columns:hover figure:not(:hover) {
+div#columns:hover tip:not(:hover) {
 	opacity: 0.4;
 }
 
 @media screen and (max-width: 750px) { 
   #columns { column-gap: 0px; }
-  #columns figure { width: 100%; }
+  #columns tip { width: 100%; }
 }
+
+
+
