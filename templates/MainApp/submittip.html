@@ -1,9 +1,51 @@
 <!DOCTYPE html>
 {% extends 'MainApp/base.html' %}
-{% load staticfiles %}
 
 {% block title_block %}
+
 {% endblock %}
 
+
 {% block body_block %}
+
+    <br>
+    <br>
+    <br>
+
+    <div class="col-md-12" align="center">
+        <h3 style="color: #AACCFF;">Submit Your Own Tip</h3>
+        <p style="color: white; font-size: 20px;">
+            Send us a tip that has helped you cope in the past that you think others may find useful. All submitted tips are to be approved by a moderator before publication.
+        </p>
+
+        <br>
+
+        <form role="form" method="post" id="submitForm">
+
+            <div class="col-sm-12" align="center">
+                <label style="color: white; font-size: 18px;">Title:</label>
+                <br>
+                <input type="text" id="tiptitle" maxlength="128" placeholder="Title...">
+                <br>
+                <br>
+                <br>
+            </div>
+
+            <div class="col-sm-12" align="center">
+                <label style="color: white; font-size: 18px;">Tip Content:</label>
+                <br>
+                <textarea style="width:50%;" type="textarea" id="tip" placeholder="Enter Your Tip Here..." maxlength="1000" rows="5"></textarea>
+                <br>
+                <br>
+                <br>
+            </div>
+
+            <div class="col-sm-12">
+                <button style="width:20%;" type="button" id="submitButton" class="btn btn-primary btn-info btn-block">Submit Tip!</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+
 {% endblock %}

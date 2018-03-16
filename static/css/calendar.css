@@ -1,4 +1,4 @@
-﻿column {
+﻿.piece {
     float: right;
     color: white;
 }
@@ -6,4 +6,7 @@
     color: red;
     font-weight: bold;
     align-content: center;
+}
+h3 {
+	color = white;
 }

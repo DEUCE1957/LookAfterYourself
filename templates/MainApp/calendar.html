@@ -2,7 +2,7 @@
 {% extends 'MainApp/base.html' %}
 {% load staticfiles %}
 <head>
-    <link rel="stylesheet" href="/stylesheets/calendar.css" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/calendar.css'%} " type="text/css">
 </head>
 {% block title_block %}
 Calendar
@@ -10,7 +10,7 @@ Calendar
 
 {% block body_block %}
 <div id="test">We shall see</div>
-<div class="column">
+<div class="piece">
     {% if name and time %}
 
         <h3>The next upcoming event</h3>
