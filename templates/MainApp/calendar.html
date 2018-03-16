@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 {% extends 'MainApp/base.html' %}
 {% load staticfiles %}
-<head>
-    <link rel="stylesheet" href="{% static 'css/calendar.css'%} " type="text/css">
-</head>
-{% block title_block %}
-Calendar
+
+{% block script_block %}
+<link rel="stylesheet" href="{% static 'css/calendar.css'%}" type="text/css" />
 {% endblock %}
 
-{% block body_block %}
-<div id="test">We shall see</div>
-<div class="piece">
-    {% if name and time %}
+
+
+    {% block title_block %}
+    Calendar
+    {% endblock %}
+
+
+
+    {% block body_block %}
+    <div id="test">We shall see</div>
+    <div class="piece">
+        {% if name and time %}
 
         <h3>The next upcoming event</h3>
-            {{name}}</br>
-            {{time}}</br>
-            {{description}}</br>
+        {{name}}</br>
+        {{time}}</br>
+        {{description}}</br>
 
-    {% else %}
+        {% else %}
         <h3>No upcoming events</h3>
-    {% endif %}
-</div>
-<div class="column">
-<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
-style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-</div>
+        {% endif %}
+    </div>
+    <div class="column">
+        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
+                style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
 
 {% endblock %}
