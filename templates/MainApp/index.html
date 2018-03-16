@@ -2,9 +2,8 @@
 {% extends 'MainApp/base.html' %}
 {% load staticfiles %}
 
-
+<!-- Home page so this is empty-->
 {% block title_block %}
-    <!-- Home page so this is empty-->
 {% endblock %}
 
 {% block script_block %}
@@ -25,26 +24,23 @@
         <br>
         <br>
         <div class="carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "autoPlay": 2000 }'>
-            <div class="carousel-cell" align="center" style="background-image: url(https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/static/support.jpg);"
+            <div class="carousel-cell" align="center" style="background-repeat: no-repeat; background-position: center;
+            background-image: url(https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/static/blog.png);"
+            onclick="location.href='https://lookafteryourself.pythonanywhere.com/blog/';"></div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell"></div>
+            <div class="carousel-cell" align="center" style="background-repeat: no-repeat; background-position: center;
+            background-image: url(https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/static/support.png);"
             onclick="location.href='https://lookafteryourself.pythonanywhere.com/support/';"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
-            <div class="carousel-cell"></div>
+
         </div>
-
         <br>
         <br>
-        <div style="margin:10px">
-        <a href = "https://en.wikipedia.org/wiki/John_von_Neumann">
-        <img src="https://i.imgur.com/29LGWdM.jpg" width = 50% height = 50%>
-        </a>
-        </div>
-
+        <br>
         <br>
 
-        <iframe width=90% height=1080 src="https://www.yumpu.com/en/embed/view/ASGDFsv5yTik4MXW" allowfullscreen="true"  allowtransparency="true"></iframe>
-        <p style="color:white"> <b style="color:#AACCFF;"> Password: </b>yMNpPQXt </p>
-        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <h2 style = "text-align:center;">A Central Portal for Mental Health Support at the University of Glasgow</h2>
+        <br>
+        <br>
 
 {% endblock %}
