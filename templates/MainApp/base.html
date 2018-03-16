@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Look After Yourself
-            {% block title_block %}
+            {% block title %}
             {% endblock %}
     </title>
     <!-- Bootstrap 4 -->
@@ -36,9 +36,8 @@
     <!-- Links Custom Flickity CSS Sheet -->
     <link rel="stylesheet" href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/tips.css">
 
-    {% block script_block %}
+    {% block script %}
     {% endblock %}
-
     <!-- Links Default CSS Sheet -->
     <link href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/default.css" rel="stylesheet" type="text/css" />
 
@@ -51,11 +50,13 @@
             border:1px solid black;
         }
     </style>
-
+    {% block meta %}
+    {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
     <body>
+
         <!-- Main Titles -->
         <div style = "text-align:center;" onclick="location.href='https://lookafteryourself.pythonanywhere.com';">
         <h1> Look After Yourself </h1>
@@ -73,7 +74,7 @@
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/login/" style="color:black;"><b>Log in</b></a></button>
         </div>
 
-        {% block body_block %}
+        {% block content %}
 
         {% endblock %}
 
