@@ -74,7 +74,7 @@ def calendar(request):
     contextDict["time"] = event["start"]["dateTime"]
     contextDict["description"] = event.get("description","")
     contextDict["color"] = event.get("colorId", "#ffffff")
-    contextDict["id"] = event.get["id"]
+    contextDict["id"] = event["id"]
     return render(request,'MainApp/calendar.html', context=contextDict)
 
 def event(request, eventID):
@@ -85,7 +85,7 @@ def event(request, eventID):
 
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the event')
-    event = service.events().get(eventID)
+    event = service.events().get(calendarId="primary",eventId=eventID).execute()
     
     contextDict["name"] = event["summary"]
     contextDict["time"] = event["start"]["dateTime"]
