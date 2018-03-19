@@ -1,4 +1,4 @@
-#!/home/LookAfterYourself/.virtualenvs/gitlit/bin/python2.7
+#!/home/LookAfterYourself/.virtualenvs/gitLit/bin/python3.6
 from django.core import management
 
 if __name__ == "__main__":

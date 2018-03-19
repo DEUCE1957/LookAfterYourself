@@ -74,7 +74,25 @@ def calendar(request):
     contextDict["time"] = event["start"]["dateTime"]
     contextDict["description"] = event.get("description","")
     contextDict["color"] = event.get("colorId", "#ffffff")
+    contextDict["id"] = event.get["id"]
     return render(request,'MainApp/calendar.html', context=contextDict)
+
+def event(request, eventID):
+    contextDict = {}
+    credentials = get_credentials()
+    http = credentials.authorize(httplib2.Http())
+    service = discovery.build('calendar', 'v3', http=http)
+
+    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    print('Getting the event')
+    event = service.events().get(eventID)
+    
+    contextDict["name"] = event["summary"]
+    contextDict["time"] = event["start"]["dateTime"]
+    contextDict["description"] = event.get("description","")
+    contextDict["color"] = event.get("colorId", "#ffffff")
+
+    return render(request,'MainApp/event.html', context=contextDict)
 
 def login(request):
     return HttpResponse("This is the Look After Yourself login page")

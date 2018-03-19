@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'MainApp/base.html' %}
+
+{% block script %}
+<link rel="stylesheet" href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/calendar.css" />
+{% endblock %}
+
+{% block title_block %}
+Event
+{% endblock %}
+
+
+
+{% block content %}
+<div id="test">We shall see</div>
+<div class="piece">
+    {% if name and time %}
+
+    <h3>{{name}}</h3>
+    {{time}}</br>
+    {{description}}</br>
+
+    {% else %}
+    <h3>No upcoming events</h3>
+    {% endif %}
+</div>
+
+{% endblock %}

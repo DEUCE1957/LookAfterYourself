@@ -1,4 +1,4 @@
-#!/home/LookAfterYourself/.virtualenvs/gitlit/bin/python
+#!/home/LookAfterYourself/.virtualenvs/gitLit/bin/python
 
 import sys
 import getopt

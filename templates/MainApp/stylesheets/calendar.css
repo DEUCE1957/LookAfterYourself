@@ -1,6 +1,8 @@
 ﻿.piece {
     float: right;
     color: white;
+    padding: 40 px;
+    border: 4 px;
 }
 #test {
     color: red;
