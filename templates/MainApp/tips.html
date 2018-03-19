@@ -19,21 +19,30 @@
 
     <br>
     <br>
+    <br>
 
-    <div class="dropdown">
-        <input id="keyInput" type="text" onclick="showDropdown()" onkeyup="filterSearch()" placeholder="Search for keyword..." class="dropLst">
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#">Addiction</a>
-            <a href="#">ADHD</a>
-            <a href="#">Anxiety</a>
-            <a href="#">Bipolar Disorder</a>
-            <a href="#">Depression</a>
-            <a href="#">Eating Disorder</a>
-            <a href="#">OCD</a>
-            <a href="#">PTSD</a>
-            <a href="#">General</a>
+    <div class="section1" id="section1">
+        <div class="dropdown" id="dropdown" style="overflow: hidden; padding-right: .5em;">
+            <input id="keyInput" style="width: 30%" type="text" onclick="showDropdown()" onkeyup="filterSearch()" placeholder="Search for keyword..." class="dropLst">
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Addiction</a>
+                <a href="#">ADHD</a>
+                <a href="#">Anxiety</a>
+                <a href="#">Bipolar Disorder</a>
+                <a href="#">Depression</a>
+                <a href="#">Eating Disorder</a>
+                <a href="#">OCD</a>
+                <a href="#">PTSD</a>
+                <a href="#">General</a>
+            </div>
+        </div>
+
+        <div class="submitTip" id="submitTip">
+            <button class="submitButton" type="button" onclick="document.location.href='/submittip/'">Submit Tip!</button>
         </div>
     </div>
+
+    <br>
 
     <script>
     /* Show dropdown list when user clicks on the input box */
@@ -71,9 +80,6 @@
         }
     }
     </script>
-
-    <br>
-    <br>
 
 <div id="columns">
     <tip>
