@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 {% extends 'MainApp/base.html' %}
-{% load static %}
 
-{% block script_block %}
-<link rel="stylesheet" href="{% static "LookAfterYourself/css/calendar.css" %}" type="text/css" />
+{% block script %}
+<link rel="stylesheet" href="https://www.pythonanywhere.com/user/LookAfterYourself/files/home/LookAfterYourself/templates/MainApp/stylesheets/calendar.css"/>
+{% endblock %}
+
+{% block title_block %}
+Calendar
 {% endblock %}
 
 
 
-    {% block title_block %}
-    Calendar
-    {% endblock %}
-
-
-
-    {% block body_block %}
+{% block content %}
     <div id="test">We shall see</div>
     <div class="piece">
         {% if name and time %}
