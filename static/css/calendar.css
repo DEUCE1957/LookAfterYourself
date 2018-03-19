@@ -1,0 +1,14 @@
+﻿.piece {
+    color: black;
+    padding: 40 px;
+    border: 4 px;
+    background-color: #8bceff;
+}
+#test {
+    color: red;
+    font-weight: bold;
+    align-content: center;
+}
+h3 {
+    color : white;
+}
