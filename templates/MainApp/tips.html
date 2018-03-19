@@ -9,6 +9,9 @@
 {% block script %}
 {% endblock %}
 
+<script src="./scripts/tips.js"></script>
+<link rel="stylesheet" href="./stylesheets/tips.css">
+
 {% block meta %}
 {% endblock %}
 
@@ -17,9 +20,57 @@
     <br>
     <br>
 
-    <div id="section1">
-
+    <div class="dropdown">
+        <input id="keyInput" type="text" onclick="showDropdown()" onkeyup="filterSearch()" placeholder="Search for keyword..." class="dropLst">
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#">Addiction</a>
+            <a href="#">ADHD</a>
+            <a href="#">Anxiety</a>
+            <a href="#">Bipolar Disorder</a>
+            <a href="#">Depression</a>
+            <a href="#">Eating Disorder</a>
+            <a href="#">OCD</a>
+            <a href="#">PTSD</a>
+            <a href="#">General</a>
+        </div>
     </div>
+
+    <script>
+    /* Show dropdown list when user clicks on the input box */
+    function showDropdown() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function filterSearch() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("keyInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropLst')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+        }
+    }
+    </script>
 
     <br>
     <br>
