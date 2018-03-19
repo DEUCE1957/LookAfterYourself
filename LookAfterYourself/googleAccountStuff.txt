@@ -1,0 +1,2 @@
+#Something along these lines for the Google key in the settings file
+GOOGLE_KEY = open('google.key', 'r').read().strip()
