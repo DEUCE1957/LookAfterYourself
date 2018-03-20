@@ -10,6 +10,9 @@ from oauth2client.file import Storage
 import datetime
 
 ##Copy pasted from Google's quickStart
+SCOPES = 'https://www.googleapis.com/auth/calendar'
+CLIENT_SECRET_FILE = 'client_secret.json'
+APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 def get_credentials():
     """Gets valid user credentials from storage.
 
@@ -48,6 +51,47 @@ def service():
 def getDateTime(time):
     return datetime.datetime.strptime(time,"%Y-%m-%dT%H:%M:%SZ")
 
+def createTestEvent(ser):
+    event = {
+  'summary': 'Google I/O 2015',
+  'location': '800 Howard St., San Francisco, CA 94103',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%dT%H:%M:%S"),
+    'timeZone': 'Etc/GMT+0',
+  },
+  'end': {
+    'dateTime': datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(hours=1), "%Y-%m-%dT%H:%M:%S"),
+    'timeZone': 'Etc/GMT+0',
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=2'
+  ],
+  'attendees': [],
+  'reminders': {},}
+    event = ser.events().insert(calendarId='primary', body=event).execute()
+    print(event)
+
+def createEvent(name, startYear, startMonth, startDay, startHour, startMinute, endYear, endMonth, endDay, endHour, endMinute, description=""):
+    ser = service()
+    event = {
+  'summary': name,
+  'description': description,
+  'start': {
+    'dateTime': datetime.datetime.strftime(datetime.datetime(startYear, startMonth, startDay, startHour, startMinute),
+                                           "%Y-%m-%dT%H:%M:%S"),
+    'timeZone': 'Etc/GMT+0',
+  },
+  'end': {
+    'dateTime': datetime.datetime.strftime(datetime.datetime(endYear, endMonth, endDay, endHour, endMinute),
+                                           "%Y-%m-%dT%H:%M:%S"),
+    'timeZone': 'Etc/GMT+0',
+  },
+  'recurrence': [],
+  'attendees': [],
+  'reminders': {},}
+    event = ser.events().insert(calendarId='primary', body=event).execute()
+    print(event)
 
 def context(event):
     contextDict = {}
@@ -115,3 +159,12 @@ def eventContext(eventID):
     if idholder != "":
         contextDict["prev"] = idholder
     return contextDict
+
+if __name__ == '__main__':
+    try:
+        import argparse
+        flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+    except ImportError:
+        flags = None
+    createEvent("AA", 2018,4,4,12,0,2018,4,5,3,3,"Let us see if this works")
+    print("created event")
