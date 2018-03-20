@@ -13,7 +13,7 @@ from oauth2client.file import Storage
 
 import datetime
 
-import MainApp.LogicalCalendar as LogicalCalendar
+import MainApp.calendarlogic as calendarlogic
 
 def index(request):
     context_dict = {'custom_message':"This is a customised message"}
@@ -32,10 +32,10 @@ def support(request):
     return render(request,'MainApp/support.html', context={})
 
 def calendar(request):
-    return render(request,'MainApp/calendar.html', context=LogicalCalendar.calendarContext())
+    return render(request,'MainApp/calendar.html', context=calendarlogic.calendarContext())
 
 def event(request, eventID):
-    return render(request,'MainApp/event.html', context=LogicalCalendar.eventContext(eventID))
+    return render(request,'MainApp/event.html', context=calendarlogic.eventContext(eventID))
 
 def login(request):
     return HttpResponse("This is the Look After Yourself login page")
