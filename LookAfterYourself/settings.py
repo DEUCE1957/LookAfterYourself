@@ -16,8 +16,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR, ]
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [STATIC_DIR, ]
+
 
 #Something along these lines for the Google key
 #GOOGLE_KEY = open('google.key', 'r').read().strip()
@@ -45,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MainApp',
-    'registration' #add in the registration package
 ]
 
 MIDDLEWARE = [
@@ -128,10 +129,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#Registration Package
-REGISTRATION_OPEN = True
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '//' #go to Index
-LOGIN_URL = 'accounts/login' #page when not logged in and are trying to access authentication page
 

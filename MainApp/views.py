@@ -36,7 +36,8 @@ def support(request):
 def calendar(request):
     contextDict = calendarlogic.calendarContext()
     if request.method == 'POST' and request.user.is_superuser:
-        form = eventForm(request.POST)
+        form = eventForm(request.POST)
+
         print(form)
         if form.is_valid():
             data = form.cleaned_data
@@ -53,4 +54,4 @@ def event(request, eventID):
 def login(request):
     return HttpResponse("This is the Look After Yourself login page")
 
-# Create your views here.
+

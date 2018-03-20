@@ -27,6 +27,5 @@ urlpatterns = [
     url(r'^submittip', views.submittip, name='submittip'),
     url(r'^LookAfterYourself/', include('MainApp.urls')),
     url(r'^admin/',admin.site.urls),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^event/(?P<eventID>[\w\-]+)/$', views.event, name='event'),
 ]
