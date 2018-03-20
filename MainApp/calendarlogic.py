@@ -72,18 +72,18 @@ def createTestEvent(ser):
     event = ser.events().insert(calendarId='primary', body=event).execute()
     print(event)
 
-def createEvent(name, startYear, startMonth, startDay, startHour, startMinute, endYear, endMonth, endDay, endHour, endMinute, description=""):
+def createEvent(name, startDate, startTime, endDate, endTime, description=""):
     ser = service()
     event = {
   'summary': name,
   'description': description,
   'start': {
-    'dateTime': datetime.datetime.strftime(datetime.datetime(startYear, startMonth, startDay, startHour, startMinute),
+    'dateTime': datetime.datetime.strftime(datetime.datetime.combine(startDate,startTime),
                                            "%Y-%m-%dT%H:%M:%S"),
     'timeZone': 'Etc/GMT+0',
   },
   'end': {
-    'dateTime': datetime.datetime.strftime(datetime.datetime(endYear, endMonth, endDay, endHour, endMinute),
+    'dateTime': datetime.datetime.strftime(datetime.datetime.combine(endDate,endTime),
                                            "%Y-%m-%dT%H:%M:%S"),
     'timeZone': 'Etc/GMT+0',
   },

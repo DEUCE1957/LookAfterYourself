@@ -14,7 +14,7 @@ from oauth2client.file import Storage
 import datetime
 
 import calendarlogic
-
+from forms import eventForm
 
 
 def index(request):
@@ -34,7 +34,18 @@ def support(request):
     return render(request,'MainApp/support.html', context={})
 
 def calendar(request):
-    return render(request,'MainApp/calendar.html', context=calendarlogic.calendarContext())
+    contextDict = calendarlogic.calendarContext()
+    if request.method == 'POST' and request.user.is_superuser:
+        form = eventForm(request.POST)
+        print(form)
+        if form.is_valid():
+            data = form.cleaned_data
+            calendarlogic.createEvent(data["name"], data["startDate"], data["startTime"],
+                                      data["endDate"], data["endTime"], data.get("description"))
+        else:
+            print(form.errors)
+    contextDict["form"] = eventForm()
+    return render(request,'MainApp/calendar.html', contextDict)
 
 def event(request, eventID):
     return render(request,'MainApp/event.html', context=calendarlogic.eventContext(eventID))
