@@ -45,32 +45,39 @@ def service():
     service = discovery.build('calendar', 'v3', http=http)
     return service
 
+def getDateTime(time):
+    return datetime.datetime.strptime(time,"%Y-%m-%dT%H:%M:%SZ")
+
+
+def context(event):
+    contextDict = {}
+    now = datetime.datetime.now()
+    contextDict["name"] = event["summary"]
+    startTime = getDateTime(event["start"]["dateTime"])
+    #If the year is different from the current year, we add it
+    if startTime.year != now.year:
+        contextDict["startTime"] = datetime.datetime.strftime(startTime,"%a, %d %B, %H:%M, %Y")
+    else:
+        contextDict["startTime"] = datetime.datetime.strftime(startTime,"%a, %d %B, %H:%M")
+    contextDict["endTime"] = event["end"]["dateTime"]
+    contextDict["description"] = event.get("description","")
+    contextDict["color"] = event.get("colorId", "#ffffff")
+    contextDict["id"] = event["id"]
+    return contextDict
+
 def calendarContext():
     ser = service()
-    contextDict = {}
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the event')
     eventsResult = ser.events().list(
         calendarId='primary', timeMin=now, maxResults=1, singleEvents=True,
         orderBy='startTime').execute()
     event = eventsResult.get('items', [])[0]
-    contextDict["name"] = event["summary"]
-    contextDict["time"] = event["start"]["dateTime"]
-    contextDict["description"] = event.get("description","")
-    contextDict["color"] = event.get("colorId", "#ffffff")
-    contextDict["id"] = event["id"]
-    return contextDict
+    return context(event)
 
 def eventContext(eventID):
-    contextDict = {}
     ser = service()
-
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the event')
     event = ser.events().get(calendarId="primary",eventId=eventID).execute()
-    
-    contextDict["name"] = event["summary"]
-    contextDict["time"] = event["start"]["dateTime"]
-    contextDict["description"] = event.get("description","")
-    contextDict["color"] = event.get("colorId", "#ffffff")
-    return contextDict
+    return context(event)

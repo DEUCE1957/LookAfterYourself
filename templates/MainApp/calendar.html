@@ -13,11 +13,14 @@ Calendar
 
 {% block content %}
     <div class="piece">
-        {% if name and time %}
+        {% if name and startTime %}
 
         <h3>The next upcoming event</h3>
         <a href="/event/{{id}}">{{name}}</a></br>
-        {{time}}</br>
+        <p>{{startTime}}
+        {% if endTime%}
+            - {{endTime}}
+        {% endif %}</p>
 
         {% else %}
         <h3>No upcoming events</h3>

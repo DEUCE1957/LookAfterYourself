@@ -6,18 +6,21 @@
 {% endblock %}
 
 {% block title_block %}
-Event
+Event {{name}}
 {% endblock %}
 
 
 
 {% block content %}
 <div class="piece">
-    {% if name and time %}
+    {% if name and startTime %}
 
     <h3>{{name}}</h3>
-    {{time}}</br>
-    {{description}}</br>
+    <p>{{startTime}}
+    {% if endTime%}
+        - {{endTime}}
+    {% endif %}</p>
+    <p>{{description}}</p>
 
     {% else %}
     <h3>The event was not found<h3/>
