@@ -59,11 +59,38 @@ def context(event):
         contextDict["startTime"] = datetime.datetime.strftime(startTime,"%a, %d %B, %H:%M, %Y")
     else:
         contextDict["startTime"] = datetime.datetime.strftime(startTime,"%a, %d %B, %H:%M")
-    contextDict["endTime"] = event["end"]["dateTime"]
+    endTime = getDateTime(event["end"]["dateTime"])
+    #If the end date is different, we'll add it, otherwise we'll have just the time
+    if startTime.year != endTime.year:
+        contextDict["endTime"] = datetime.datetime.strftime(endTime,"%a, %d %B, %H:%M, %Y")
+    elif startTime.day != endTime.day or startTime.month != endTime.month:
+        contextDict["endTime"] = datetime.datetime.strftime(endTime,"%a, %d %B, %H:%M")
+    else:
+        contextDict["endTime"] = datetime.datetime.strftime(endTime,"%H:%M")
     contextDict["description"] = event.get("description","")
     contextDict["color"] = event.get("colorId", "#ffffff")
     contextDict["id"] = event["id"]
     return contextDict
+
+def getPrevEventId(ser,event):
+    timeMax = event["start"]["dateTime"]
+    eventsResult = ser.events().list(
+        calendarId='primary', timeMax=timeMax, singleEvents=True,
+        orderBy='startTime').execute()
+    if len(eventsResult.get('items', [])) < 1:
+        return ""
+    else:
+        return eventsResult.get('items', [])[-1]["id"]
+
+def getNextEventId(ser, event):
+    timeMin = event["start"]["dateTime"]
+    eventsResult = ser.events().list(
+        calendarId='primary', timeMin=timeMin, maxResults=2, singleEvents=True,
+        orderBy='startTime').execute()
+    if len(eventsResult.get('items', [])) < 2:
+        return ""
+    else:
+        return eventsResult.get('items', [])[1]["id"]
 
 def calendarContext():
     ser = service()
@@ -80,4 +107,11 @@ def eventContext(eventID):
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the event')
     event = ser.events().get(calendarId="primary",eventId=eventID).execute()
-    return context(event)
+    contextDict = context(event)
+    idholder = getNextEventId(ser, event)
+    if idholder != "":
+        contextDict["next"] = idholder
+    idholder = getPrevEventId(ser, event)
+    if idholder != "":
+        contextDict["prev"] = idholder
+    return contextDict

@@ -27,4 +27,15 @@ Event {{name}}
     {% endif %}
 </div>
 
+<div>
+{% if prev %}
+    <a href="/event/{{prev}}">Previous</a>
+{% endif %}
+</div>
+<div>
+{% if next %}
+    <a href="/event/{{next}}">Next</a>
+{% endif %}
+</div>
+
 {% endblock %}
