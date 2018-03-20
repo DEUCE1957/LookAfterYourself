@@ -1,0 +1,101 @@
+body {
+    font-family:helvetica;
+    color:#AACCFF;
+    margin:2px;
+    padding:2px;
+}
+
+p {
+    color:black;
+    font-size:12px;
+}
+
+h1 {
+    color: white;
+    font-size: 60px;
+
+}
+
+h2 {
+    color: #AACCFF;
+    font-size: 40px;
+}
+
+h3 {
+    color:#6BA9FF;
+    font-size: 30px;
+}
+
+h4 {
+    color:#529AFF;
+    font-size: 20px;
+}
+
+h5 {
+    color:#3388FF;
+    font-size: 16px;
+}
+
+h6 {
+    color:#006AFF;
+    font-size: 14px;
+}
+
+img {
+    border-style:double;
+    border-color:#006AFF;
+    border-width:4px;
+}
+
+ul {
+    list-style-type: circle;
+    color:white;
+}
+
+a {
+    color:gray;
+    text-decoration:underline;
+}
+a:hover {
+    color:maroon;
+    text-decoration:underline;
+}
+
+#Menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #B3F4FF;
+}
+
+#MenuItem {
+    float: left;
+}
+
+#MenuItem a {
+    display: block;
+    color: black;
+    text-align: center;
+    border:4px solid #B3F4FF;
+    padding: 16px;
+    text-decoration: none;
+}
+
+#MenuItem a:hover {
+    background-color: #24DEFF;
+    border:4px solid black;
+}
+
+#FooterItem {
+    float:left;
+    margin:10px;
+}
+
+#FooterItem a {
+    color:green;
+}
+
+#FooterItem a:hover {
+    color:#cf23ff;
+}
