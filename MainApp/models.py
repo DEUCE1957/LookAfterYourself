@@ -29,7 +29,7 @@ class UserProfile(models.Model):
 class BlogEntry(models.Model):
     #An instance for a blog post
     title = models.CharField(max_length=128)
-    content = models.CharField(max_length=10000)
+    content = models.TextField(max_length=10000)
     tags = models.CharField(max_length=1000)
     time = models.DateTimeField()
     slug = models.SlugField(unique=True)
@@ -40,3 +40,6 @@ class BlogEntry(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = 'Blog entries'
