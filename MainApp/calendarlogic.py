@@ -39,6 +39,7 @@ def get_credentials():
         else: # Needed only for compatibility with Python 2.6
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
+    print(credentials)
     return credentials
 
 #Creates a recourse for calendar
@@ -116,9 +117,9 @@ def context(event):
     contextDict["id"] = event["id"]
     return contextDict
 
-def getPrevEventId(ser,event):
+def getPrevEventId(eventRes,event):
     timeMax = event["start"]["dateTime"]
-    eventsResult = ser.events().list(
+    eventsResult = eventRes.list(
         calendarId='primary', timeMax=timeMax, singleEvents=True,
         orderBy='startTime').execute()
     if len(eventsResult.get('items', [])) < 1:
@@ -126,9 +127,9 @@ def getPrevEventId(ser,event):
     else:
         return eventsResult.get('items', [])[-1]["id"]
 
-def getNextEventId(ser, event):
+def getNextEventId(eventRes, event):
     timeMin = event["start"]["dateTime"]
-    eventsResult = ser.events().list(
+    eventsResult = eventRes.list(
         calendarId='primary', timeMin=timeMin, maxResults=2, singleEvents=True,
         orderBy='startTime').execute()
     if len(eventsResult.get('items', [])) < 2:
@@ -137,25 +138,25 @@ def getNextEventId(ser, event):
         return eventsResult.get('items', [])[1]["id"]
 
 def calendarContext():
-    ser = service()
+    eventRes = service().events()
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the event')
-    eventsResult = ser.events().list(
+    eventsResult = eventRes.list(
         calendarId='primary', timeMin=now, maxResults=1, singleEvents=True,
         orderBy='startTime').execute()
     event = eventsResult.get('items', [])[0]
     return context(event)
 
 def eventContext(eventID):
-    ser = service()
+    eventRes = service().events()
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the event')
-    event = ser.events().get(calendarId="primary",eventId=eventID).execute()
+    event = eventRes.get(calendarId="primary",eventId=eventID).execute()
     contextDict = context(event)
-    idholder = getNextEventId(ser, event)
+    idholder = getNextEventId(eventRes, event)
     if idholder != "":
         contextDict["next"] = idholder
-    idholder = getPrevEventId(ser, event)
+    idholder = getPrevEventId(eventRes, event)
     if idholder != "":
         contextDict["prev"] = idholder
     return contextDict

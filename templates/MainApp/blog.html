@@ -1,15 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<title>Piece Of Mind Blog</title>
-<meta charset="UTF-8">
+{% extends 'MainApp/base.html' %}
+{% load staticfiles %}
+{% block script %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body class="w3-light-grey">
+{% endblock %}
+
+{% block title_block %}Piece Of Mind Blog{% endblock %}
+<meta charset="UTF-8">
+{% block content %}
+
 
 <!-- w3-content defines a container for fixed size centered content,
 and is wrapped around the whole page content, except for the footer in this example -->
@@ -146,4 +152,5 @@ and is wrapped around the whole page content, except for the footer in this exam
 </footer>
 
 </body>
+{%endblock%}
 </html>
