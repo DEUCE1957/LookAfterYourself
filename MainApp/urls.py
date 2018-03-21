@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from MainApp import views
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^calendar', views.calendar, name='calendar'),
     url(r'^submittip', views.submittip, name='submittip'),
     url(r'^event/(?P<eventID>[\w\-]+)/$', views.event, name='event'),
+    url(r'^blog/', include('blog.urls')),
 ]
