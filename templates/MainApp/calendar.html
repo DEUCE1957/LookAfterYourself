@@ -31,4 +31,13 @@ Calendar
                 style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
 
+{% if user.is_superuser %}
+    <div class="piece">
+        <form action="/calendar/" method="POST">{% csrf_token %}
+             {{form.as_p}}
+        <button type="submit">Submit</button>
+	</form>
+    </div>
+{% endif %}
+
 {% endblock %}
