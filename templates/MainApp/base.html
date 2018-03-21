@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 {% load staticfiles %}
 <style>
@@ -71,7 +71,7 @@
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/tips/" style="color:black;"><b>Tips</b></a></button>
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/calendar/" style="color:black;"><b>Calendar</b></a></button>
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/support/" style="color:black;"><b>Support Services</b></a></button>
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="/login/" style="color:black;"><b>Log in</b></a></button>
+            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'login' %}" style="color:black;"><b>Log in</b></a></button>
         </div>
 
         {% block content %}
@@ -85,7 +85,8 @@
                 <li id="FooterItem"><a href="/tips/">Tips</a></li>
                 <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
                 <li id="FooterItem"><a href="/support/">Support Services</a></li>
-                <li id="FooterItem"><a href="/login/">Log in</a></li>
+                <li id="FooterItem"><a href="{% url 'login' %}">Log in</a></li>
+                <li id="FooterItem"><a href="{% url 'register' %}">TEST: Register</a></li>
                 </ul>
         </div>
         <br>
