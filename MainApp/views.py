@@ -48,7 +48,7 @@ def calendar(request):
         if form.is_valid():
             data = form.cleaned_data
             calendarlogic.createEvent(data["name"], data["startDate"], data["startTime"],
-                                      data["endDate"], data["endTime"], data.get("description"))
+                                      data["endDate"], data["endTime"], data.get("description"), data["location"])
         else:
             print(form.errors)
     contextDict["form"] = eventForm()

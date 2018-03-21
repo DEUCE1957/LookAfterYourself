@@ -25,6 +25,8 @@ class eventForm(forms.Form):
     endTime = forms.TimeField(label = "End time", initial = "hh:mm")
     description = forms.CharField(label = "Description", max_length=1000,
                                   required = False)
+    location= forms.CharField(label = "Location", max_length=256,
+                                  required = False)
 
 
 
