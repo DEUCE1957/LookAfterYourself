@@ -19,8 +19,8 @@ from oauth2client.file import Storage
 
 import datetime
 
-import calendarlogic
-from forms import eventForm
+import MainApp.calendarlogic as calendarlogic
+from MainApp.forms import eventForm
 
 
 def index(request):
