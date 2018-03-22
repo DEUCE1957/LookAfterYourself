@@ -37,7 +37,9 @@ SECRET_KEY = 'jeumg_&jt31g#ul4uztb50hxvy*!jyv0^q=$8p9!v@+74epgx%'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+DISQUS_API_KEY = 'z1sp1m04HtsZ1XScMxCqoMvcmyD0BevK2cWLMDvKxq01BeZqoU7kVEFYJvUfZPrQ'
+DISQUS_WEBSITE_SHORTNAME = 'lookafteryourself'
+SITE_ID = 1
 
 # Application definition
 
@@ -48,9 +50,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'MainApp',
     'registration',
-    'blog',
+    'disqus',
 ]
 
 MIDDLEWARE = [

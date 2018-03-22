@@ -46,9 +46,6 @@ def index(request):
     context_dict = {'custom_message':"This is a customised message"}
     return render(request,'MainApp/index.html', context=context_dict)
 
-def blog(request):
-    return render(request,'MainApp/blog.html', context={})
-
 def tips(request):
     return render(request,'MainApp/tips.html', context={})
 

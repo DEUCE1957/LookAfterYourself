@@ -113,3 +113,7 @@ LookAfterYourself/__pycache__/settings.cpython-36.pyc
 MainApp/migrations/__pycache__/__init__.cpython-36.pyc
 *.pyc
 *.pyc
+*.sqlite3
+*.xml
+.idea/workspace.xml
+LookAfterYourself/db.sqlite3

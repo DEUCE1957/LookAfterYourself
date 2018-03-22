@@ -2,42 +2,116 @@ from __future__ import print_function
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm
 
+from MainApp.models import Tip
+from django.template import loader
+
 import httplib2
 import os
-
 from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 
 import datetime
-
 import MainApp.calendarlogic as calendarlogic
 from MainApp.forms import eventForm
+from MainApp.models import Post
+from django.views.generic import ListView, DetailView
 
+class PostsListView(ListView):
+    model = Post
+
+class PostDetailView(DetailView):
+    model = Post
 
 def index(request):
-    context_dict = {'custom_message':"This is a customised message"}
-    return render(request,'MainApp/index.html', context=context_dict)
+    context_dict = {'custom_message': "This is a customised message"}
+    return render(request, 'MainApp/index.html', context=context_dict)
 
-def blog(request):
-    return render(request,'MainApp/blog.html', context={})
 
 def tips(request):
-    return render(request,'MainApp/tips.html', context={})
 
-#def submittip(request):
-    #return render(request, 'MainApp/submittip.html', context={})
+    return render(request, 'MainApp/tips.html', context={})
+
+# def submittip(request):
+# return render(request, 'MainApp/submittip.html', context={})
+
+    posts = Tip.objects.all()
+    return render(request,'MainApp/tips.html', context={'posts': posts})
+
+
+def lazy_load_posts(request):
+    posts = Tip.objects.all()
+
+    # build a html posts list with the paginated posts
+    tips_html = loader.render_to_string(
+        'MainApp/tips.html',
+        {'posts': posts}
+    )
+
+    # package output data and return it as a JSON object
+    output_data = {
+        'tips_html': tips_html,
+    }
+    return JsonResponse(output_data)
+
+
+def depression(request):
+    posts = Tip.objects.filter(tags__contains='depression')
+    return render(request,'MainApp/depression.html', context={'posts': posts})
+
+
+def adhd(request):
+    posts = Tip.objects.filter(tags__contains='adhd')
+    return render(request,'MainApp/adhd.html', context={'posts': posts})
+
+
+def anxiety(request):
+    posts = Tip.objects.filter(tags__contains='anxiety')
+    return render(request,'MainApp/anxiety.html', context={'posts': posts})
+
+
+def bipolar(request):
+    posts = Tip.objects.filter(tags__contains='bipolar')
+    return render(request,'MainApp/bipolar.html', context={'posts': posts})
+
+
+def eatingdisorder(request):
+    posts = Tip.objects.filter(tags__contains='eatingdisorder')
+    return render(request,'MainApp/eatingdisorder.html', context={'posts': posts})
+
+
+def ocd(request):
+    posts = Tip.objects.filter(tags__contains='ocd')
+    return render(request,'MainApp/ocd.html', context={'posts': posts})
+
+
+def ptsd(request):
+    posts = Tip.objects.filter(tags__contains='ptsd')
+    return render(request,'MainApp/ptsd.html', context={'posts': posts})
+
+
+def general(request):
+    posts = Tip.objects.filter(tags__contains='general')
+    return render(request,'MainApp/general.html', context={'posts': posts})
+
+
+def addiction(request):
+    posts = Tip.objects.filter(tags__contains='addiction')
+    return render(request,'MainApp/addiction.html', context={'posts': posts})
+
+
 
 def support(request):
-    return render(request,'MainApp/support.html', context={})
+    return render(request, 'MainApp/support.html', context={})
+
 
 def calendar(request):
     contextDict = calendarlogic.calendarContext()
@@ -48,22 +122,25 @@ def calendar(request):
         if form.is_valid():
             data = form.cleaned_data
             message = calendarlogic.createEvent(data["name"], data["startDate"], data["startTime"],
-                                      data["endDate"], data["endTime"], data.get("description"), data["location"])
+                                                data["endDate"], data["endTime"], data.get("description"),
+                                                data["location"])
         else:
             message = str(form.errors)
         contextDict["message"] = message
     contextDict["form"] = eventForm()
-    return render(request,'MainApp/calendar.html', contextDict)
+    return render(request, 'MainApp/calendar.html', contextDict)
+
 
 def event(request, eventID):
-    return render(request,'MainApp/event.html', context=calendarlogic.eventContext(eventID))
+    return render(request, 'MainApp/event.html', context=calendarlogic.eventContext(eventID))
+
 
 def register(request):
-    #Registration successful?
+    # Registration successful?
     registered = False
     if request.method == 'POST':
 
-        #Retrieve info from form
+        # Retrieve info from form
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
 
@@ -82,26 +159,27 @@ def register(request):
 
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
-                #Save UserProfile
+                # Save UserProfile
                 profile.save()
-               #Registration successful
+                # Registration successful
                 registered = True
 
             else:
-                #Invalid forms
+                # Invalid forms
                 print(user_form.errors, profile_form.errors)
 
     else:
-        #Render forms
+        # Render forms
         user_form = UserForm()
         profile_form = UserProfileForm()
 
     # Render the template depending on the context.
     return render(request,
-                    'MainApp/register.html',
-                    {'user_form': user_form,
-                    'profile_form': profile_form,
-                    'registered': registered})
+                  'MainApp/register.html',
+                  {'user_form': user_form,
+                   'profile_form': profile_form,
+                   'registered': registered})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -128,10 +206,12 @@ def user_login(request):
     else:
         return render(request, 'MainApp/login.html', {})
 
-#Purely for diagnosis
+
+# Purely for diagnosis
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
+
 
 @login_required
 def user_logout(request):
