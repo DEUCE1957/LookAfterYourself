@@ -2,12 +2,14 @@ from __future__ import print_function
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm
+from MainApp.models import Tip
+from django.template import loader
 
 import httplib2
 import os
@@ -30,11 +32,72 @@ def index(request):
 def blog(request):
     return render(request,'MainApp/blog.html', context={})
 
-def tips(request):
-    return render(request,'MainApp/tips.html', context={})
 
-#def submittip(request):
-    #return render(request, 'MainApp/submittip.html', context={})
+def tips(request):
+    posts = Tip.objects.all()
+    return render(request,'MainApp/tips.html', context={'posts': posts})
+
+
+def lazy_load_posts(request):
+    posts = Tip.objects.all()
+
+    # build a html posts list with the paginated posts
+    tips_html = loader.render_to_string(
+        'MainApp/tips.html',
+        {'posts': posts}
+    )
+
+    # package output data and return it as a JSON object
+    output_data = {
+        'tips_html': tips_html,
+    }
+    return JsonResponse(output_data)
+
+
+def depression(request):
+    posts = Tip.objects.filter(tags__contains='depression')
+    return render(request,'MainApp/depression.html', context={'posts': posts})
+
+
+def adhd(request):
+    posts = Tip.objects.filter(tags__contains='adhd')
+    return render(request,'MainApp/adhd.html', context={'posts': posts})
+
+
+def anxiety(request):
+    posts = Tip.objects.filter(tags__contains='anxiety')
+    return render(request,'MainApp/anxiety.html', context={'posts': posts})
+
+
+def bipolar(request):
+    posts = Tip.objects.filter(tags__contains='bipolar')
+    return render(request,'MainApp/bipolar.html', context={'posts': posts})
+
+
+def eatingdisorder(request):
+    posts = Tip.objects.filter(tags__contains='eatingdisorder')
+    return render(request,'MainApp/eatingdisorder.html', context={'posts': posts})
+
+
+def ocd(request):
+    posts = Tip.objects.filter(tags__contains='ocd')
+    return render(request,'MainApp/ocd.html', context={'posts': posts})
+
+
+def ptsd(request):
+    posts = Tip.objects.filter(tags__contains='ptsd')
+    return render(request,'MainApp/ptsd.html', context={'posts': posts})
+
+
+def general(request):
+    posts = Tip.objects.filter(tags__contains='general')
+    return render(request,'MainApp/general.html', context={'posts': posts})
+
+
+def addiction(request):
+    posts = Tip.objects.filter(tags__contains='addiction')
+    return render(request,'MainApp/addiction.html', context={'posts': posts})
+
 
 def support(request):
     return render(request,'MainApp/support.html', context={})

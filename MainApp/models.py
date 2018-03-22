@@ -38,10 +38,8 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Service(models.Model):
-    #ServiceID
-    ServiceId = models.AutoField(primary_key=True)
     #Full Name of Service
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
     #Acronym
     acronym = models.CharField(max_length=10)
     #Link to the Service's WebPage
@@ -57,3 +55,4 @@ class Service(models.Model):
 
     def __str__(self):
         return str(self.ServiceID)
+

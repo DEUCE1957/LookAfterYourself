@@ -79,28 +79,17 @@ def getDateTime(time):
 
 def createEvent(name, startDate, startTime, endDate, endTime, description="", location=""):
     ser = service()
-    event = {
-  'summary': name,
-  'location': location,
-  'description': description,
-  'start': {
+    event = {'summary': name, 'location': location, 'description': description,
+    'start': {
     'dateTime': datetime.datetime.strftime(datetime.datetime.combine(startDate,startTime),
-                                           "%Y-%m-%dT%H:%M:%S"),
-    'timeZone': 'Etc/GMT+0',
-  },
-  'end': {
-    'dateTime': datetime.datetime.strftime(datetime.datetime.combine(endDate,endTime),
-                                           "%Y-%m-%dT%H:%M:%S"),
-    'timeZone': 'Etc/GMT+0',
-  },
-  'recurrence': [],
-  'attendees': [],
-  'reminders': {},}
+                                           "%Y-%m-%dT%H:%M:%S"), 'timeZone': 'Etc/GMT+0',},
+    'end': {'dateTime': datetime.datetime.strftime(datetime.datetime.combine(endDate,endTime),
+                                           "%Y-%m-%dT%H:%M:%S"),'timeZone': 'Etc/GMT+0',}
+                                            ,'recurrence': [],'attendees': [],'reminders': {},}
     try:
         event = ser.events().insert(calendarId='primary', body=event).execute()
         return "Event succesfully created"
-    except Exception, e:
-        print(e)
+    except Exception as e:
         return re.findall(r'"([^"]*)"', str(e))[0]
 
 def context(event):

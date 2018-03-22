@@ -61,7 +61,9 @@
         <div style = "text-align:center;" onclick="document.location.href = '/';">
         <h1> Look After Yourself </h1>
         <h2> The Mental Health Support Application</h2>
-        <p style="margin:0;padding:0"> <strong> {{custom_message}}</strong> </p>
+        {% if user.is_authenticated %}
+        <p style="margin:0;padding:0"> <strong> You are logged in as {{user.username}}</strong> </p>
+        {% endif %}
         </div>
         <br>
 
