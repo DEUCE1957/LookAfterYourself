@@ -9,7 +9,6 @@ urlpatterns = [
     url(r'^submittip', views.submittip, name='submittip'),
     url(r'^event/(?P<eventID>[\w\-]+)/$', views.event, name='event'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^blog/', include('blog.urls')),
     url(r'^lazy_load_posts/$', views.lazy_load_posts, name='lazy_load_posts'),
     url(r'^depression', views.depression, name='depression'),
     url(r'^adhd', views.adhd, name='adhd'),
