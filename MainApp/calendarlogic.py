@@ -9,6 +9,8 @@ from oauth2client.file import Storage
 
 import datetime
 
+import re
+
 ##Copy pasted from Google's quickStart
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 CLIENT_SECRET_FILE = 'client_secret.json'
@@ -96,9 +98,10 @@ def createEvent(name, startDate, startTime, endDate, endTime, description="", lo
   'reminders': {},}
     try:
         event = ser.events().insert(calendarId='primary', body=event).execute()
-        message = "Event succesfully created"
-    except Exception:
-        message = str(Exception)
+        return "Event succesfully created"
+    except Exception, e:
+        print(e)
+        return re.findall(r'"([^"]*)"', str(e))[0]
 
 def context(event):
     contextDict = {}
