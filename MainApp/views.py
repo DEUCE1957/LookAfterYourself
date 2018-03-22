@@ -157,4 +157,4 @@ def submit_tip(request):
             # Print the errors to the console
             print(form.errors)
     # Handle bad/new/no form cases and render any error messages
-    return render(request, 'MainApp/submittip.html', {'form': form})
+    return render(request, '/submittip.html', {'form': SubmitTipForm})

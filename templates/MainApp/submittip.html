@@ -26,10 +26,10 @@
 
         <br>
 
-        <form method="post" id="SubmitTipForm" action="{% url 'submittip' %}" enctype="multipart/form-data">
+        <form method="post" id="SubmitTipForm" action="/" enctype="multipart/form-data">
             {% csrf_token %}
 
-           <div class="col-sm-12" align="center">
+          <div class="col-sm-12" align="center">
                 <label style="color: white; font-size: 18px;">Title:</label>
                 <br>
                 <input type="text" id="tiptitle" maxlength="128" placeholder="Title...">
@@ -48,7 +48,7 @@
             </div>
 
             <div class="col-sm-12">
-                <input style="width:20%;" type="submit" id="submitButton" class="btn btn-primary btn-info btn-block"></input>
+                <input style="width:20%;" type="submit" id="submitButton" class="btn btn-primary btn-info btn-block"/>
             </div>
         </form>
     </div>
