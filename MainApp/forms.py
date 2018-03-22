@@ -29,7 +29,7 @@ class eventForm(forms.Form):
                                   required = False)
 
 
-class SubmitTipForm(forms.ModelForm):
+class SubmitForm(forms.ModelForm):
     title = forms.CharField(max_length=128,
                             help_text="Enter the title of your tip.")
     tip = forms.CharField(max_length=1000,
@@ -37,7 +37,7 @@ class SubmitTipForm(forms.ModelForm):
 
     class Meta:
         model = SubmittedTip
-        fields = ('title', 'tip',)
+        fields = ('title', 'tip')
         exclude = ('tipId',)
 
 
