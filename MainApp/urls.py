@@ -12,4 +12,12 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^lazy_load_posts/$', views.lazy_load_posts, name='lazy_load_posts'),
+    url(r'^depression', views.depression, name='depression'),
+    url(r'^adhd', views.adhd, name='adhd'),
+    url(r'^anxiety', views.anxiety, name='anxiety'),
+    url(r'^bipolar', views.bipolar, name='bipolar'),
+    url(r'^eatingdisorder', views.eatingdisorder, name='eatingdisorder'),
+    url(r'^ocd', views.ocd, name='ocd'),
+    url(r'^ptsd', views.ptsd, name='ptsd'),
+    url(r'^general', views.general, name='general'),
 ]
