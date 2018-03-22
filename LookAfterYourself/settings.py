@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MainApp',
     'registration',
-    'blog'
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +153,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # If True, the user will be automatically logged in.
 REGISTRATION_AUTO_LOGIN = True
 # The page you want users to arrive at after they successfully log in
-LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_REDIRECT_URL = '/index/'
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
 LOGIN_URL = '/accounts/login/'

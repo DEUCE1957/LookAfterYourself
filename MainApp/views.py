@@ -47,10 +47,11 @@ def calendar(request):
         print(form)
         if form.is_valid():
             data = form.cleaned_data
-            calendarlogic.createEvent(data["name"], data["startDate"], data["startTime"],
+            message = calendarlogic.createEvent(data["name"], data["startDate"], data["startTime"],
                                       data["endDate"], data["endTime"], data.get("description"), data["location"])
         else:
-            print(form.errors)
+            message = str(form.errors)
+        contextDict["message"] = message
     contextDict["form"] = eventForm()
     return render(request,'MainApp/calendar.html', contextDict)
 

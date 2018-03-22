@@ -33,6 +33,9 @@ Calendar
 
 {% if user.is_superuser %}
     <div class="piece">
+        {% if message %}
+        <p>{{message}}</p>
+        {% endif %}
         <form action="/calendar/" method="POST">{% csrf_token %}
              {{form.as_p}}
         <button type="submit">Submit</button>

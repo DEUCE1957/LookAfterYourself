@@ -73,6 +73,8 @@ def getDateTime(time):
 ##    event = ser.events().insert(calendarId='primary', body=event).execute()
 ##    print(event)
 
+
+
 def createEvent(name, startDate, startTime, endDate, endTime, description="", location=""):
     ser = service()
     event = {
@@ -92,8 +94,11 @@ def createEvent(name, startDate, startTime, endDate, endTime, description="", lo
   'recurrence': [],
   'attendees': [],
   'reminders': {},}
-    event = ser.events().insert(calendarId='primary', body=event).execute()
-    print(event)
+    try:
+        event = ser.events().insert(calendarId='primary', body=event).execute()
+        message = "Event succesfully created"
+    except Exception:
+        message = str(Exception)
 
 def context(event):
     contextDict = {}
@@ -118,6 +123,19 @@ def context(event):
     contextDict["id"] = event["id"]
     return contextDict
 
+#Creates a contextDict for  the next upcoming event in the case of an OSError
+def fakeContext(name, id="",):
+    contextDict = {}
+    contextDict["name"] = name
+    contextDict["startTime"] = datetime.datetime.strftime(datetime.datetime.now(),"%a, %d %B, %H:%M, %Y")
+    contextDict["endTime"] = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(hours=1),"%a, %d %B, %H:%M, %Y")
+    contextDict["description"] = "Apologies"
+    contextDict["color"] = "#ffffff"
+    contextDict["id"] = "fakeID" + id
+    print("Created a fake context")
+    print(contextDict)
+    return contextDict
+
 def getPrevEventId(eventRes,event):
     timeMax = event["start"]["dateTime"]
     eventsResult = eventRes.list(
@@ -138,28 +156,51 @@ def getNextEventId(eventRes, event):
     else:
         return eventsResult.get('items', [])[1]["id"]
 
+
+
 def calendarContext():
-    eventRes = service().events()
-    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the event')
-    eventsResult = eventRes.list(
-        calendarId='primary', timeMin=now, maxResults=1, singleEvents=True,
-        orderBy='startTime').execute()
-    event = eventsResult.get('items', [])[0]
-    return context(event)
+    #We try this a few times
+    for x in range(3):
+        try:
+            eventRes = service().events()
+            now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+            print('Getting the event')
+            eventsResult = eventRes.list(
+                calendarId='primary', timeMin=now, maxResults=1, singleEvents=True,
+                orderBy='startTime')
+            eventsResult = eventsResult.execute()
+            event = eventsResult.get('items', [])[0]
+            print("We got the real event!")
+            return context(event)
+        except OSError:
+            continue
+    #For the times when the calendar doesn't work on PythonAnywhere
+    print("We got nowhere")
+    return fakeContext("This would be the next upcoming event, but we have an error")
 
 def eventContext(eventID):
-    eventRes = service().events()
-    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the event')
-    event = eventRes.get(calendarId="primary",eventId=eventID).execute()
-    contextDict = context(event)
-    idholder = getNextEventId(eventRes, event)
-    if idholder != "":
-        contextDict["next"] = idholder
-    idholder = getPrevEventId(eventRes, event)
-    if idholder != "":
-        contextDict["prev"] = idholder
+    #We try this a few times
+    if not eventID[:4] == "fake":
+        for x in range(3):
+            try:
+                eventRes = service().events()
+                now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+                print('Getting the event')
+                event = eventRes.get(calendarId="primary",eventId=eventID).execute()
+                contextDict = context(event)
+                idholder = getNextEventId(eventRes, event)
+                if idholder != "":
+                    contextDict["next"] = idholder
+                idholder = getPrevEventId(eventRes, event)
+                if idholder != "":
+                    contextDict["prev"] = idholder
+                return contextDict
+            except OSError:
+                continue
+    print("We got nowhere")
+    contextDict = fakeContext("This would be the next upcoming event, but we have an error")
+    contextDict["prev"] = "fakeIDprev"
+    contextDict["next"] = "fakeIDnext"
     return contextDict
 
 if __name__ == '__main__':

@@ -15,6 +15,43 @@
         padding:0;
     }
 
+    p {
+        font-size:14px;
+        color: #aae9ff;
+        margin:0;
+        padding:0;
+    }
+
+    strong {
+        font-size:14px;
+        font-style:bold;
+        color: #b3e4f9;
+    }
+
+    a {
+        font-size:14px;
+        font-style:underline;
+        color:#adffc1;
+    }
+
+    a:hover {
+        font-size:14px;
+        font-style:underline;
+        color:#edff7a;
+    }
+
+    a:visited{
+        font-size:14px;
+        font-style:underline;
+        color:#7aff9a;
+    }
+
+    a:active{
+        font-size:14px;
+        font-style:bold;
+        color:#79ffe6;
+    }
+
     #Menu {
         list-style-type: none;
         margin: 0;
