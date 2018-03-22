@@ -94,6 +94,11 @@ def general(request):
     return render(request,'MainApp/general.html', context={'posts': posts})
 
 
+def addiction(request):
+    posts = Tip.objects.filter(tags__contains='addiction')
+    return render(request,'MainApp/addiction.html', context={'posts': posts})
+
+
 def support(request):
     return render(request,'MainApp/support.html', context={})
 

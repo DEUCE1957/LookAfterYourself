@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^restricted/', views.restricted, name='restricted'),
     url(r'^adhd', views.adhd, name='adhd'),
+    url(r'^addiction', views.addiction, name='addiction'),
     url(r'^anxiety', views.anxiety, name='anxiety'),
     url(r'^bipolar', views.bipolar, name='bipolar'),
     url(r'^eatingdisorder', views.eatingdisorder, name='eatingdisorder'),
