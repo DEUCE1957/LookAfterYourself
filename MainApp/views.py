@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from MainApp.forms import UserForm, UserProfileForm
+from MainApp.forms import UserForm, UserProfileForm, SubmitTipForm
 
 import httplib2
 import os
@@ -140,3 +140,21 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('index'))
 
 
+def submit_tip(request):
+    form = SubmitTipForm()
+
+    # Check that the request was POST
+    if request.method == 'POST':
+        form = SubmitTipForm(request.POST)
+
+        # Check that the submitted form was valid
+        if form.is_valid():
+            # Save to the database if true
+            form.save(commit=True)
+            # Return the user to the index page if form was successfully submitted
+            return index(request)
+        else:
+            # Print the errors to the console
+            print(form.errors)
+    # Handle bad/new/no form cases and render any error messages
+    return render(request, 'MainApp/submittip.html', {'form': form})

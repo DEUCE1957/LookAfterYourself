@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class Tip(models.Model):
     tipId = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128)
@@ -14,6 +15,16 @@ class Tip(models.Model):
 
     def __str__(self):
         return str(self.tipId)
+
+
+class SubmittedTip(models.Model):
+    tipId = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=128)
+    tip = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return str(self.tipId)
+
 
 class UserProfile(models.Model):
     # Links UserProfile to a User model instance.
