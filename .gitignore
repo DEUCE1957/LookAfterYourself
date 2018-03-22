@@ -113,3 +113,5 @@ LookAfterYourself/__pycache__/settings.cpython-36.pyc
 MainApp/migrations/__pycache__/__init__.cpython-36.pyc
 *.pyc
 *.pyc
+db.sqlite3
+*.sqlite3
