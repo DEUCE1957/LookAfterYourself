@@ -33,23 +33,15 @@ def index(request):
 def blog(request):
     return render(request,'MainApp/blog.html', context={})
 
+
 def tips(request):
     posts = Tip.objects.all()
     return render(request,'MainApp/tips.html', context={'posts': posts})
 
 
 def lazy_load_posts(request):
-    page = request.POST.get('page')
     posts = Tip.objects.all()
 
-    results_per_page = 5
-    paginator = Paginator(posts, results_per_page)
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(2)
-    except EmptyPage:
-        posts = paginator.page(paginator.num_pages)
     # build a html posts list with the paginated posts
     tips_html = loader.render_to_string(
         'MainApp/tips.html',
@@ -59,7 +51,6 @@ def lazy_load_posts(request):
     # package output data and return it as a JSON object
     output_data = {
         'tips_html': tips_html,
-        'has_next': posts.has_next()
     }
     return JsonResponse(output_data)
 
