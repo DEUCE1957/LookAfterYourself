@@ -1,9 +1,8 @@
 from django.conf.urls import url, include
 from MainApp import views
+from MainApp.views import PostsListView, PostDetailView
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^blog', views.blog, name='blog'),
     url(r'^tips', views.tips, name='tips'),
     url(r'^support', views.support, name='support'),
     url(r'^calendar', views.calendar, name='calendar'),
@@ -21,4 +20,6 @@ urlpatterns = [
     url(r'^ptsd', views.ptsd, name='ptsd'),
     url(r'^general', views.general, name='general'),
     url(r'^addiction', views.addiction, name='addiction'),
+    url(r'^$', PostsListView.as_view(), name='list'),
+    url(r'^(?P<pk>\d+)/$', PostDetailView.as_view()),
 ]

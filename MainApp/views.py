@@ -23,14 +23,20 @@ import datetime
 
 import MainApp.calendarlogic as calendarlogic
 from MainApp.forms import eventForm
+from MainApp.models import Post
+from django.views.generic import ListView, DetailView
+
+
+class PostsListView(ListView):
+    model = Post
+
+class PostDetailView(DetailView):
+    model = Post
 
 
 def index(request):
     context_dict = {'custom_message':"This is a customised message"}
     return render(request,'MainApp/index.html', context=context_dict)
-
-def blog(request):
-    return render(request,'MainApp/blog.html', context={})
 
 
 def tips(request):
