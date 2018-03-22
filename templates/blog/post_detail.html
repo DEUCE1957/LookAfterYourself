@@ -1,0 +1,11 @@
+
+
+{% block content %}
+    <p>{{ post.datetime }}</p>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    {% load disqus_tags %}
+    {% disqus_dev %}
+    {% disqus_show_comments %}
+{% endblock %}
+
