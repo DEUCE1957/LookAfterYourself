@@ -71,7 +71,12 @@
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/tips/" style="color:black;"><b>Tips</b></a></button>
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/calendar/" style="color:black;"><b>Calendar</b></a></button>
             <button type="button" class="btn btn-primary btn-info btn-block"><a href="/support/" style="color:black;"><b>Support Services</b></a></button>
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'login' %}" style="color:black;"><b>Log in</b></a></button>
+            {% if user.is_authenticated %}
+            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'auth_logout' %}?next=/" style="color:black;"><b>Log in</b></a></button>
+            {% else %}
+            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'auth_login' %}" style="color:black;"><b>Log in</b></a></button>
+            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'registration_register' %}" style="color:black;"><b>Register</b></a></button>
+            {% endif %}
         </div>
 
         {% block content %}
@@ -85,8 +90,12 @@
                 <li id="FooterItem"><a href="/tips/">Tips</a></li>
                 <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
                 <li id="FooterItem"><a href="/support/">Support Services</a></li>
+                {% if user.is_authenticated %}
+                <li id="FooterItem"><a href="{% url 'auth_logout' %}?next=/">Logout/a></li>
+                {% else %}
                 <li id="FooterItem"><a href="{% url 'login' %}">Log in</a></li>
-                <li id="FooterItem"><a href="{% url 'register' %}">TEST: Register</a></li>
+                <li id="FooterItem"><a href="{% url 'registration_register' %}">Register</a></li>
+                {% endif %}
                 </ul>
         </div>
         <br>

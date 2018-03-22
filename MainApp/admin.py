@@ -4,10 +4,11 @@ from django.contrib import admin
 
 from MainApp.models import Tip
 from MainApp.models import UserProfile
+from MainApp.models import Service
 
 admin.site.register(Tip)
 admin.site.register(UserProfile)
-
+admin.site.register(Service)
 
 
 

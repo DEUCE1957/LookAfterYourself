@@ -8,7 +8,9 @@ import django
 
 django.setup()
 from MainApp.models import Tip
+from MainApp.models import Service
 
+#IDcount = 0
 
 def populate():
     tips = [
@@ -81,6 +83,21 @@ def populate():
                 "important. Go back to basics, set alarms, create a routine and introduce calming rituals before bed.",
          "tags": "general"}]
 
+    #services = [
+    #    {"name" : "Counselling and Psychological Services",
+    #    "acronym" : "CAPS",
+    #    "url" : "https://www.gla.ac.uk/myglasgow/counselling/",
+    #    "desc" : "A UofG service that provides drop-in sessions, counselling and self-help",
+    #    "phone_number" : "+4401413304528",
+    #    },
+    #    {"name" : "The Samaritans",
+    #    "acronym" : "",
+    #    "url" : "https://www.samaritans.org/branches/samaritans-glasgow",
+    #    "desc" : "A safe, confidential call-line to discuss anything on your mind. Available 24/7 without waiting lists and without costs.",
+    #    "phone_number" : "116123",
+    #   }
+    #]
+
     tipsDict = {"tips": tips}
 
     for t, tip_data in tipsDict.items():
@@ -89,6 +106,13 @@ def populate():
 
     for x in Tip.objects.all():
         print("- {0}".format(str(x)))
+
+
+#def add_service(name,acronym,url,desc,phone_number):
+#    IDcount = IDcount + 1
+#    service = Service.objects.get_or_create(ServiceId=IDcount,name=name,acronym=acronym,url=url,
+#    desc=desc,phone_number=phone_number)[0]
+#    service.save()
 
 
 def add_tip(title, tip, tags):
