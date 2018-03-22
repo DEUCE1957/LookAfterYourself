@@ -2,12 +2,15 @@ from __future__ import print_function
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm
+from MainApp.models import Tip
+from django.template import loader
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import httplib2
 import os
@@ -31,7 +34,35 @@ def blog(request):
     return render(request,'MainApp/blog.html', context={})
 
 def tips(request):
-    return render(request,'MainApp/tips.html', context={})
+    posts = Tip.objects.all()
+    return render(request,'MainApp/tips.html', context={'posts': posts})
+
+
+def lazy_load_posts(request):
+    page = request.POST.get('page')
+    posts = Tip.objects.all()
+
+    results_per_page = 5
+    paginator = Paginator(posts, results_per_page)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(2)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    # build a html posts list with the paginated posts
+    tips_html = loader.render_to_string(
+        'MainApp/tips.html',
+        {'posts': posts}
+    )
+
+    # package output data and return it as a JSON object
+    output_data = {
+        'tips_html': tips_html,
+        'has_next': posts.has_next()
+    }
+    return JsonResponse(output_data)
+
 
 #def submittip(request):
     #return render(request, 'MainApp/submittip.html', context={})
