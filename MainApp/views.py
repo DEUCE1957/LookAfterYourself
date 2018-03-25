@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm
-from MainApp.models import Tip
+from MainApp.models import Tip,Service,suggestion
 from django.template import loader
 from MainApp.models import UserProfile
 
@@ -124,8 +124,14 @@ def calendar(request):
 def event(request, eventID):
     return render(request,'MainApp/event.html', context=calendarlogic.eventContext(eventID))
 
+def service(request):
+    service_list = Service.objects.order_by('last_updated')
+    context_dict = {'services':service_list}
+    return render(request,'MainApp/support.html',context=context_dict)
+@login_required
 def profile(request):
     return render(request,'MainApp/profile.html',{})
+
 def register(request):
     #Registration successful?
     registered = False
@@ -207,6 +213,7 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
 
+@login_required
 def suggestion(request):
     submit_form = SubmitForm()
     # Check that the request was POST
@@ -221,26 +228,31 @@ def suggestion(request):
             return index(request)
         else:
             # Print the errors to the console
-            print(form.errors)
+            print(submit_form.errors)
     # Handle bad/new/no form cases and render any error messages
     return render(request, 'MainApp/suggestion.html', {'submit_form': submit_form})
 
-
+@login_required
 def submittip(request):
-    submit_form = SubmitForm()
-
+    submitted = False
     # Check that the request was POST
     if request.method == 'POST':
-        submit_form = SubmitForm(request.POST)
+        submit_form = SubmitForm(data=request.POST)
 
         # Check that the submitted form was valid
         if submit_form.is_valid():
             # Save to the database if true
-            submit_form.save(commit=True)
+            sub = submit_form.save()
+            sub.save()
+            submitted = True
             # Return the user to the index page if form was successfully submitted
-            return index(request)
+            # return index(request)
         else:
             # Print the errors to the console
-            print(form.errors)
+            print(submit_form.errors)
+    else:
+        # Render Form
+        submit_form = SubmitForm()
     # Handle bad/new/no form cases and render any error messages
     return render(request, 'MainApp/submittip.html', {'submit_form': submit_form})
+

@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^support', views.support, name='support'),
     url(r'^calendar', views.calendar, name='calendar'),
     url(r'^submittip', views.submittip, name='submittip'),
-    url(r'^submitsuggestion',views.suggestion,name='suggestion'),
+    url(r'^suggestion', views.suggestion, name='suggestion'),
     url(r'^event/(?P<eventID>[\w\-]+)/$', views.event, name='event'),
     url(r'^search/', views.search, name='search'),
     url(r'^accounts/', include('registration.backends.simple.urls')),

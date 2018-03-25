@@ -9,7 +9,6 @@
 {% block script %}
 {% endblock %}
 
-<script src="./scripts/tips.js"></script>
 <link rel="stylesheet" href="./stylesheets/tips.css">
 
 <script type=”text/javascript”>window.CSRF_TOKEN = “{{ csrf_token }}”;</script>
@@ -24,9 +23,11 @@
     <br>
 
     <div class="section1" id="section1">
+        {% if user.is_authenticated %}
         <div class="submitTip" id="submitTip">
             <button class="submitButton" type="button" onclick="document.location.href='/submittip/'">Submit Tip!</button>
         </div>
+        {% endif %}
 
         <div class="dropdown" id="dropdown">
             <input id="keyInput" style="width: 30%;" type="text" onclick="showDropdown()" onkeyup="filterSearch()" placeholder="Search for keyword..." class="dropLst">
@@ -47,40 +48,40 @@
     <br>
 
     <script>
-    /* Show dropdown list when user clicks on the input box */
-    function showDropdown() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
+        /* Show dropdown list when user clicks on the input box */
+        function showDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
 
-    function filterSearch() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("keyInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
+        function filterSearch() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("keyInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
             }
         }
-    }
 
-    // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropLst')) {
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropLst')) {
 
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-              }
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
             }
         }
-    }
     </script>
 
 <div id="columns">

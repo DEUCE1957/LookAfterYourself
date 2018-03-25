@@ -4,11 +4,12 @@ body { font-family: sans-serif; }
 
 .carousel {
   background: #EEE;
+  background-size: 20%;
 }
 
 .carousel-cell {
   width: 100%;
-  height: 400px;
+  height: 100%;
   background: #AACCFF;
   border-radius: 5px;
 }

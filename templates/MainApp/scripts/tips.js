@@ -1,12 +1,11 @@
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function searchKeywords() {
+/* Show dropdown list when user clicks on the input box */
+function showDropdown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function filterFunction() {
+function filterSearch() {
     var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
+    input = document.getElementById("keyInput");
     filter = input.value.toUpperCase();
     div = document.getElementById("myDropdown");
     a = div.getElementsByTagName("a");
@@ -21,15 +20,15 @@ function filterFunction() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropLst')) {
+    if (!event.target.matches('.dropLst')) {
 
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
     }
-  }
 }

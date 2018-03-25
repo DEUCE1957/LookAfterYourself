@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends 'MainApp/base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 
@@ -15,6 +16,57 @@
 
 
 {% block content %}
+    {% if services %}
+        {% for service in services %}
+            <!-- Generates a Card containing information about the Service -->
+            <div class="container">
+                <div class="card" align="center">
+
+                    <div class="card-header">
+                        <div class="card-title" style="color:black;font-size:1.5vw">
+                            <b>{{ service.name }}</b> ( {{ service.acronym }} )
+                        </div>
+                    </div>
+
+                    <div class="card-body" stykle="width:100%">
+                        <img src="{{ service.picture }}" alt = "No Image Available" width=50% height=auto>
+                        <p style="color:black;font-size:1.0vw"> {{ service.description }} </p>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card-link">
+                                {% if service.url %}
+                                    <div class="btn btn-primary btn-info float-center">
+                                        <a href="{{ service.url }}" style="color:black">Visit the {{ service.name }} Webpage</a>
+                                    </div>
+                                    <br>
+                                {% endif %}
+
+                                {% if service.email %}
+                                    <p style="font-size:1.0vw;color:black"> You can contact {{ service.name }} via email at: {{ service.email }}</p>
+                                    <br>
+                                {% endif %}
+
+                                {% if service.phone_number %}
+                                    <p style="font-size:1.0vw;color:black"> Telephone Number: {{ service.phone_number }}</p>
+                                    <br>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h3> There are currently no services listed in our Database </h3>
+
+    {% endif %}
+
+
     <h2> Support services available at The University of Glasgow </h2>
     <h3 style="color:white"> Counselling and Psychological Services (CAPS) </h3>
     <img src="https://glasgowguardian.co.uk/wp-content/uploads/sites/2/2017/10/counsellingappointments_ne-Rhiannon-Doherty.jpg" width=20% height=auto></img>

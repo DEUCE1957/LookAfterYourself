@@ -45,4 +45,5 @@ urlpatterns = [
     url(r'^ptsd', views.ptsd, name='ptsd'),
     url(r'^general', views.general, name='general'),
     url(r'^depression', views.depression, name='depression'),
+    url(r'^suggestion', views.suggestion, name='suggestion'),
 ]

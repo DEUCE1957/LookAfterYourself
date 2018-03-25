@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django import forms
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -41,3 +40,20 @@ class suggestion(models.Model):
 
     def __str__(self):
         return str(self.suggestionId)
+
+class Service(models.Model):
+    serviceId=models.AutoField(primary_key=True)
+    name = models.CharField(max_length=256)
+    acronym = models.CharField(max_length=20)
+    description = models.CharField(max_length=1000)
+    picture = models.ImageField(upload_to='service_images',blank=True)
+
+    last_updated = models.DateField(auto_now=True, auto_now_add=True)
+    #Contact Information
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField(max_length=254)
+    url = models.URLField(max_length=200)
+
+    def __str__(self):
+        return str(self.serviceId)
+
