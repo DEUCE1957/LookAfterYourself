@@ -10,7 +10,7 @@ from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm
 from MainApp.models import Tip
 from django.template import loader
-from django.models import UserProfile
+from MainApp.models import UserProfile
 
 import httplib2
 import os
@@ -124,6 +124,8 @@ def calendar(request):
 def event(request, eventID):
     return render(request,'MainApp/event.html', context=calendarlogic.eventContext(eventID))
 
+def profile(request):
+    return render(request,'MainApp/profile.html',{})
 def register(request):
     #Registration successful?
     registered = False

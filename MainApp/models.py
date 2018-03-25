@@ -29,14 +29,14 @@ class SubmittedTip(models.Model):
 class UserProfile(models.Model):
     # Links UserProfile to a User model instance.
     user = models.OneToOneField(User,on_delete=models.PROTECT)
-
+    picture = models.ImageField(upload_to='profile_images', blank=True)
     # Override the __unicode__() method to return out something meaningful!
     def __str__(self):
         return self.user.username
 
 class suggestion(models.Model):
-    suggestionId=moels.AutoField(primary_key=True)
-    subject = model.CharField(max_length=128)
+    suggestionId=models.AutoField(primary_key=True)
+    subject = models.CharField(max_length=128)
     suggestion = models.CharField(max_length=1000)
 
     def __str__(self):
