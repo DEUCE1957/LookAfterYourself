@@ -10,6 +10,7 @@ from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm
 from MainApp.models import Tip
 from django.template import loader
+from django.models import UserProfile
 
 import httplib2
 import os
@@ -23,21 +24,17 @@ import datetime
 
 import MainApp.calendarlogic as calendarlogic
 from MainApp.forms import eventForm
-from MainApp.models import Post
-from django.views.generic import ListView, DetailView
-
-
-class PostsListView(ListView):
-    model = Post
-
-class PostDetailView(DetailView):
-    model = Post
 
 
 def index(request):
     context_dict = {'custom_message':"This is a customised message"}
     return render(request,'MainApp/index.html', context=context_dict)
 
+def blog(request):
+    return render(request,'MainApp/blog.html', context={})
+
+def search(request):
+    return render(request,'MainApp/searchresults.html', context={})
 
 def tips(request):
     posts = Tip.objects.all()
@@ -207,6 +204,24 @@ def user_logout(request):
     logout(request)
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
+
+def suggestion(request):
+    submit_form = SubmitForm()
+    # Check that the request was POST
+    if request.method == 'POST':
+        submit_form = SubmitForm(request.POST)
+
+        # Check that the submitted form was valid
+        if submit_form.is_valid():
+            # Save to the database if true
+            submit_form.save(commit=True)
+            # Return the user to the index page if form was successfully submitted
+            return index(request)
+        else:
+            # Print the errors to the console
+            print(form.errors)
+    # Handle bad/new/no form cases and render any error messages
+    return render(request, 'MainApp/suggestion.html', {'submit_form': submit_form})
 
 
 def submittip(request):

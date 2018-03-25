@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'MainApp/base.html' %}
+
+{% block title %}
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block meta %}
+
+{% endblock %}
+
+
+{% block content %}
+    <script>
+        (function() {
+          var cx = 'YOUR_ENGINE_ID';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+
+    <gcse:searchresults-only></gcse:searchresults-only>
+
+{% endblock %}

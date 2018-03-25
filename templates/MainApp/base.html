@@ -36,20 +36,22 @@
     <!-- Links Custom Tips CSS Sheet -->
     <link rel="stylesheet" href="{% static "css/tips.css" %}">
 
-    {% block script %}
-    {% endblock %}
     <!-- Links Default CSS Sheet -->
     <link href="{% static "css/default.css" %}" rel="stylesheet" type="text/css" />
 
-    <style>
-        .btn-block+.btn-block{
-            margin-top:0;
-        }
-        .btn {
-            background-color:#008C8C;
-            border:1px solid black;
-        }
-    </style>
+    <script>
+        $(document).ready(function() {
+            $("[href]").each(function() {
+                if (this.href == window.location.href) {
+                    $(this).addClass("disabled");
+                }
+            });
+        });
+    </script>
+
+    {% block script %}
+    {% endblock %}
+
     {% block meta %}
     {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,26 +63,65 @@
         <div style = "text-align:center;" onclick="document.location.href = '/';">
         <h1> Look After Yourself </h1>
         <h2> The Mental Health Support Application</h2>
-        {% if user.is_authenticated %}
-        <p style="margin:0;padding:0"> <strong> You are logged in as {{user.username}}</strong> </p>
-        {% endif %}
         </div>
         <br>
 
         <!-- The Horizontal Menu bar -->
-        <div class="btn-group btn-group-lg" style="width:100%;" >
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="/blog/" style="color:black;"><b>Blog</b></a></button>
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="/tips/" style="color:black;"><b>Tips</b></a></button>
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="/calendar/" style="color:black;"><b>Calendar</b></a></button>
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="/support/" style="color:black;"><b>Support Services</b></a></button>
-            {% if user.is_authenticated %}
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'auth_logout' %}?next=/" style="color:black;"><b>Log in</b></a></button>
-            {% else %}
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'auth_login' %}" style="color:black;"><b>Log in</b></a></button>
-            <button type="button" class="btn btn-primary btn-info btn-block"><a href="{% url 'registration_register' %}" style="color:black;"><b>Register</b></a></button>
-            {% endif %}
+            <div class="inline btn-group btn-group-lg" style="width:100%">
+                {% if request.path != "/" %} <!-- not the Home/Index page -->
+                <a href="/" class="btn btn-primary btn-info btn-block">Home</a>
+                {% endif %}
+                <a href="/blog/" class="btn btn-primary btn-info btn-block">Blog</a>
+                <a href="/tips/" class="btn btn-primary btn-info btn-block">Tips</a>
+                <a href="/calendar/" class="btn btn-primary btn-info btn-block">Calendar</a>
+                <a href="/support/" class="btn btn-primary btn-info btn-block">Support Services</a>
+                {% if user.is_authenticated %}
+                <a href="/profile/" class="btn btn-primary btn-info btn-block">Profile</a>
+                <a href="{% url 'auth_logout' %}?next=/" class="btn btn-primary btn-info btn-block">Logout</a>
+                {% else %}
+                <a href="{% url 'auth_login' %}" class="btn btn-primary btn-info btn-block"> Log in</a>
+                <a href="{% url 'registration_register' %}" class="btn btn-primary btn-info btn-block">Register</a>
+                {% endif %}
+                <!-- Search Box -->
+                <a href="#modalSearch" class="btn btn-primary btn-info btn-block" data-toggle="modal" data-target="#modalSearch">Search</a>
+            </div>
+        <br class="clearBoth" />
+
+
+        <!-- Search Modal -->
+        <div id="modalSearch" class="modal fade" role="dialog">
+           <div class="modal-dialog">
+
+               <!-- Modal content-->
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h4 style="color:black"> Search </h4>
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   </div>
+                   <div class="modal-body">
+                       <script>
+                          (function() {
+                            var cx = '018121202783497550752:unjevlv3oyk';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                          })();
+                        </script>
+                        <gcse:search></gcse:search>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   </div>
+               </div>
+
+           </div>
         </div>
 
+
+        <br>
         {% block content %}
 
         {% endblock %}
@@ -88,19 +129,22 @@
         <!-- Footer Bar -->
         <div>
                 <ul id="Footer" style="list-style-type:none;color:black;margin:0;padding:0">
-                <li id="FooterItem"><a href="/blog/">Blog</a></li>
-                <li id="FooterItem"><a href="/tips/">Tips</a></li>
-                <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
-                <li id="FooterItem"><a href="/support/">Support Services</a></li>
-                {% if user.is_authenticated %}
-                <li id="FooterItem"><a href="{% url 'auth_logout' %}?next=/">Logout/a></li>
-                {% else %}
-                <li id="FooterItem"><a href="{% url 'login' %}">Log in</a></li>
-                <li id="FooterItem"><a href="{% url 'registration_register' %}">Register</a></li>
-                {% endif %}
+                    {% if request.path != "/" %} <!-- not the Home/Index page -->
+                    <li id="FooterItem"><a href="/">Home</a></li>
+                    {% endif %}
+                    <li id="FooterItem"><a href="/blog/">Blog</a></li>
+                    <li id="FooterItem"><a href="/tips/">Tips</a></li>
+                    <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
+                    <li id="FooterItem"><a href="/support/">Support Services</a></li>
+                    {% if user.is_authenticated %}
+                    <li id="FooterItem"><a href="{% url 'auth_logout' %}?next=/">Logout</a></li>
+                    {% else %}
+                    <li id="FooterItem"><a href="{% url 'auth_login' %}">Log in</a></li>
+                    <li id="FooterItem"><a href="{% url 'registration_register' %}">Register</a></li>
+                    {% endif %}
                 </ul>
         </div>
-        <br>
+
         <p style="color:white"> &copy Web Application Development 2 - Team 3 Lab C </p>
 
 

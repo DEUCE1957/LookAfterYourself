@@ -12,12 +12,7 @@ Calendar
 
 
 {% block content %}
-<div id="container">
-    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
-                width="800" height="600" frameborder="0" scrolling="no" style="img"></iframe>
-    
-
-    <div class="event">
+    <div class="piece">
         {% if name and startTime %}
 
         <h3>The next upcoming event</h3>
@@ -31,7 +26,10 @@ Calendar
         <h3>No upcoming events</h3>
         {% endif %}
     </div>
-</div>
+    <div class="piece">
+        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
+                style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
 
 {% if user.is_superuser %}
     <div class="piece">

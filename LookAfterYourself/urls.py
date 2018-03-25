@@ -16,10 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from MainApp import views
+from registration.backends.simple.views import RegistrationView
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return '/'
 
 urlpatterns = [
     url(r'^$',views.index, name='index'),
-    url(r'^blog/', include('MainApp.urls')),
+    url(r'^blog', views.blog, name='blog'),
     url(r'^tips', views.tips, name='tips'),
     url(r'^support', views.support, name='support'),
     url(r'^calendar', views.calendar, name='calendar'),
@@ -27,11 +32,10 @@ urlpatterns = [
     url(r'^LookAfterYourself/', include('MainApp.urls')),
     url(r'^admin/',admin.site.urls),
     url(r'^event/(?P<eventID>[\w\-]+)/$', views.event, name='event'),
-    url(r'^login/$', views.user_login, name='login'),
-    url(r'^logout/$', views.user_logout, name='logout'),
-    url(r'^register/$',views.register,name='register'),
+    url(r'^search/', views.search, name='search'),
+    url(r'^profile/',views.profile,name='profile'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^restricted/', views.restricted, name='restricted'),
+    url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
     url(r'^adhd', views.adhd, name='adhd'),
     url(r'^addiction', views.addiction, name='addiction'),
     url(r'^anxiety', views.anxiety, name='anxiety'),

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'MainApp/base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block meta %}
+{% endblock %}
+
+
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+
+    <div class="col-md-12" align="center">
+        <h3 style="color: #AACCFF;">Submit a Site Suggestion</h3>
+        <p style="color: white; font-size: 20px;">
+            Let us know how we can improve our service for you
+        </p>
+
+        <br>
+
+        <form method="post" id="submit_form" action="/">
+            {% csrf_token %}
+
+          <div class="col-sm-12" align="center">
+                <label style="color: white; font-size: 18px;">Title:</label>
+                <br>
+                <input type="text" id="subject" maxlength="128" placeholder="Subject of your suggestion..">
+                <br>
+                <br>
+                <br>
+            </div>
+
+            <div class="col-sm-12" align="center">
+                <label style="color: white; font-size: 18px;">Tip Content:</label>
+                <br>
+                <textarea style="width:50%;" type="textarea" id="suggestion" placeholder="Enter your suggestion here..." maxlength="1000" rows="5"></textarea>
+                <br>
+                <br>
+                <br>
+            </div>
+
+            <div class="col-sm-12">
+                <input style="width:20%;" type="submit" name="submit" value="Submit Suggestion!" id="submitButton" class="btn btn-primary btn-info btn-block"/>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+
+{% endblock %}

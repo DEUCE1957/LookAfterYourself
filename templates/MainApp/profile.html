@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'MainApp/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block meta %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="card" align="center">
+
+        <div class="card-header">
+            <div class="card-title" style="color:black;font-size:1.5vw">
+                <b>Your username:</b> {{user.username}}
+            </div>
+        </div>
+
+        <div class="card-body" stykle="width:100%">
+            <img src="https://picsum.photos/600/?random" alt = "Image Failed to Load" width=50% height=auto>
+            <p style="color:black;font-size:1.0vw"> As a registerded user you can now:
+            <ul style="list-style-type:square;color:black">
+                <li> Submit Tips </li>
+                <li> Leave comments on the <a href="https://lookafteryourself.pythonanywhere.com/blog">Piece of Mind</a> blog </li>
+                <li> Provide <a href="https://lookafteryourself.pythonanywhere.com/suggestion">suggestions</a> for improving our service</li>
+            </ul>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-link">
+                <div class="inline btn-group btn-group-lg">
+                    <div class="btn btn-primary btn-info ">
+                        <a href="https://lookafteryourself.pythonanywhere.com/accounts/password/change" style="color:black">Change Password</a>
+                    </div>
+
+                    <div class="btn btn-primary btn-info">
+                        <a href="https://lookafteryourself.pythonanywhere.com/suggestion" style="color:black">Leave a suggestion</a>
+                    </div>
+                    <div class="btn btn-primary btn-info disabled">
+                        <a href="" style="color:black"></a>
+                    </div>
+                     <div class="btn btn-primary btn-info">
+                        <a href="https://lookafteryourself.pythonanywhere.com/accounts/logout/?next=/" style="color:black">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
