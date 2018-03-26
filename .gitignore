@@ -116,3 +116,4 @@ MainApp/migrations/__pycache__/__init__.cpython-36.pyc
 
 #Google credentials
 .calendar-python-quickstart.json
+putTheCredentialsHere/calendar-python-quickstart.json
