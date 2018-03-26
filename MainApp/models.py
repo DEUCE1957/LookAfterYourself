@@ -28,6 +28,7 @@ class SubmittedTip(models.Model):
 class UserProfile(models.Model):
     # Links UserProfile to a User model instance.
     user = models.OneToOneField(User,on_delete=models.PROTECT)
+    is_moderator = models.BooleanField(default=False)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     # Override the __unicode__() method to return out something meaningful!
     def __str__(self):

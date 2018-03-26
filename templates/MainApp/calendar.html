@@ -3,38 +3,40 @@
 {% load staticfiles %}
 {% block script %}
 <link rel="stylesheet" href="{% static "css/calendar.css" %}"/>
+<script src="{% static "js/calendar.js" %}"></script>
 {% endblock %}
 
 {% block title_block %}
 Calendar
-{% endblock %}
-
-
+{% endblock %}
 
 {% block content %}
-    <div class="piece">
+<div id="container">
+    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
+                width="800" height="600" frameborder="0" scrolling="no" style="img"></iframe>
+    
+
+    <div class="event" id="eventHolder">
         {% if name and startTime %}
 
         <h3>The next upcoming event</h3>
         <a href="/event/{{id}}">{{name}}</a></br>
         <p>{{startTime}}
-        {% if endTime%}
+        {% if endTime %}
             - {{endTime}}
         {% endif %}</p>
-
+		<div id = "readMore" style="display:none;"><p>{{description}}</p><p>{{location}}</p></div>
+		<button type="button" id="readMoreButton" class = "readMoreButton" onclick="readMoreFunction()"><p><span>Read more</span></p></button>
         {% else %}
         <h3>No upcoming events</h3>
         {% endif %}
     </div>
-    <div class="piece">
-        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
-                style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    </div>
+</div>
 
 {% if user.is_superuser %}
-    <div class="piece">
+    <div>
         {% if message %}
-        <p>{{message}}</p>
+        <p class="error">{{message}}</p>
         {% endif %}
         <form action="/calendar/" method="POST">{% csrf_token %}
              {{form.as_p}}

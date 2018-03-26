@@ -1,13 +1,70 @@
-.piece {
-    color: black;
-    padding: 40 px;
-    border: 4 px;
+.container {
+    position : relative
 }
-#test {
-    color: red;
-    font-weight: bold;
+#eventHolder{
+    position : relative;
+    left:850px;
+    top:-600px;
+    width: 400px;
+    overflow: hidden;
+}
+.event {
+
+    background-color: #018c86;
+    border: 10px;
+    border-style: solid;
+    border-color: #018c86;
+}
+#calendar {
     align-content: center;
 }
 h3 {
     color : white;
+    background-color: #016c86;
+    border: 5px;
+    border-style: solid;
+    border-color: #016c86;
+}
+a {
+    color : #8cffc0;
+}
+a:link:active, a:visited:active {
+    color: #edff76;
+}
+.errorlist {
+	color : white;
+}
+.readMoreButton {
+  display: inline-block;
+  background-color: #018c86;
+  border: none;
+  width: 200px;
+  transition: all 0.3s;
+  cursor: pointer;
+  align : left;
+}
+
+.readMoreButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align : left;
+  transition: 0.3s;
+}
+.readMoreButton span:after {
+  content: '>>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.3s;
+}
+
+.readMoreButton:hover span {
+  padding-right: 25px;
+}
+
+.readMoreButton:hover span:after {
+  opacity: 1;
+  right: 0;
 }
