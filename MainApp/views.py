@@ -128,6 +128,7 @@ def service(request):
     service_list = Service.objects.order_by('last_updated')
     context_dict = {'services':service_list}
     return render(request,'MainApp/support.html',context=context_dict)
+
 @login_required
 def profile(request):
     return render(request,'MainApp/profile.html',{})

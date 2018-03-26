@@ -48,7 +48,7 @@ class Service(models.Model):
     description = models.CharField(max_length=1000)
     picture = models.ImageField(upload_to='service_images',blank=True)
 
-    last_updated = models.DateField(auto_now=True, auto_now_add=True)
+    last_updated = models.DateField(auto_now=True)
     #Contact Information
     phone_number = models.CharField(max_length=20)
     email = models.EmailField(max_length=254)

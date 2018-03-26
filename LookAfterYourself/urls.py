@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from MainApp import views
 from registration.backends.simple.views import RegistrationView
+from django.conf import settings
+from django.conf.urls.static import static
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
@@ -26,7 +28,7 @@ urlpatterns = [
     url(r'^$',views.index, name='index'),
     url(r'^blog', views.blog, name='blog'),
     url(r'^tips', views.tips, name='tips'),
-    url(r'^support', views.support, name='support'),
+    url(r'^support', views.service, name='support'),
     url(r'^calendar', views.calendar, name='calendar'),
     url(r'^submittip', views.submittip, name='submittip'),
     url(r'^LookAfterYourself/', include('MainApp.urls')),
@@ -46,4 +48,4 @@ urlpatterns = [
     url(r'^general', views.general, name='general'),
     url(r'^depression', views.depression, name='depression'),
     url(r'^suggestion', views.suggestion, name='suggestion'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

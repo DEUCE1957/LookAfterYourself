@@ -7,7 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 import django
 
 django.setup()
-from MainApp.models import Tip
+from MainApp.models import Tip,Service
 
 
 def populate():
@@ -81,7 +81,75 @@ def populate():
                 "important. Go back to basics, set alarms, create a routine and introduce calming rituals before bed.",
          "tags": "general"}]
 
+    Services = [
+        {
+        "name": "Counselling and Psychological Services",
+        "acronym":"CAPS",
+        "description":"A UofG service that provides drop-in sessions, counselling and self-help. Located at 67 Southpark Avenue, they are open from 09:00-20:00 on Tuesday and Thurday and 09:00-17:00 on other weekdays.",
+        "phone_number":"+44 (0) 141 330 4528",
+        "email":"studentcounselling@glasgow.ac.uk",
+        "url":"https://www.gla.ac.uk/myglasgow/counselling/",
+        },
+        {
+        "name": "The Samaritans Glasgow",
+        "acronym":"The Samaritans",
+        "description":"A safe, confidential call-line to discuss anything on your mind. Available 24/7 without waiting lists and without costs. Also available at 210 West George Street for drop-ins from 09:00-20:00",
+        "phone_number":"116 123",
+        "email":"jo@samaritans.org",
+        "url":"https://www.samaritans.org/branches/samaritans-glasgow",
+        },
+        {
+        "name": "Breathing Space",
+        "acronym":"Breathing Space",
+        "description":"Sometimes our thoughts and feelings can overwhelm us. It helps to get some Breathing Space. Pick up the phone - we're here to listen.",
+        "phone_number":"0800 83 85 87",
+        "email":"info@breathingspacescotland.co.uk",
+        "url":"http://breathingspace.scot/",
+        },
+        {
+        "name": "National Health Service 24",
+        "acronym":"NHS 24",
+        "description":"Out-of-hour health advice for emergency situations",
+        "phone_number":"111",
+        "email":"patientaffairs@nhs24.scot.nhs.uk",
+        "url":"https://www.nhs24.scot/",
+        },
+        {
+        "name": "University of Glasgow's Nightline",
+        "acronym":"GU Nightline",
+        "description":"Nightline is a confidential telephone support and information service run for students, by trained student volunteers. We are available Monday to Friday from 7pm till 7am and we offer confidential listening and information to all students from Glasgow University.",
+        "phone_number":"0141 334 9516",
+        "email":"asknightline@glasgowstudent.net",
+        "url":"https://www.gunightline.org/",
+        },
+        {
+        "name": "B-eat beating eating disorders",
+        "acronym":"B-eat",
+        "description":"We are a champion, guide and friend to anyone affected by eating disorders, giving individuals experiencing an eating disorder and their loved ones a place where they feel listened to, supported and empowered.",
+        "phone_number":"8088010811",
+        "email":"info@beateatingdisorders.org.uk",
+        "url":"https://www.beateatingdisorders.org.uk/",
+        },
+        {
+        "name": "No Panic",
+        "acronym":"NP",
+        "description":"No Panic is a registered charity which helps people who suffer from Panic Attacks, Phobias, Obsessive Compulsive Disorders and other related anxiety disorders.",
+        "phone_number":"8449674848",
+        "email":"admin@nopanic.org.uk",
+        "url":"https://www.nopanic.org.uk/",
+        },
+    ]
+
+
+    servicesDict = {"services":Services}
     tipsDict = {"tips": tips}
+
+    for s,s_data in servicesDict.items():
+        for s in s_data:
+            add_service(s["name"],s["acronym"],s["description"],s["phone_number"],s["email"],s["url"])
+
+    for s in Service.objects.all():
+        print("- {0}".format(str(s)))
 
     for t, tip_data in tipsDict.items():
         for x in tip_data:
@@ -90,6 +158,10 @@ def populate():
     for x in Tip.objects.all():
         print("- {0}".format(str(x)))
 
+def add_service(name,acronym,description,phone_number,email,url):
+    s = Service.objects.get_or_create(name=name,acronym=acronym,description=description,phone_number=phone_number,email=email,url=url)[0]
+    s.save()
+    return s
 
 def add_tip(title, tip, tags):
     x = Tip.objects.get_or_create(title=title, tip=tip, tags=tags)[0]

@@ -16,6 +16,8 @@
 
 
 {% block content %}
+    <h2 align="center"> Support services available at The University of Glasgow </h2>
+    <br>
     {% if services %}
         {% for service in services %}
             <!-- Generates a Card containing information about the Service -->
@@ -29,7 +31,7 @@
                     </div>
 
                     <div class="card-body" stykle="width:100%">
-                        <img src="{{ service.picture }}" alt = "No Image Available" width=50% height=auto>
+                        <img src="{{service.picture.name}}" alt = "No Image Available" width=50% height=auto>
                         <p style="color:black;font-size:1.0vw"> {{ service.description }} </p>
 
                     </div>
@@ -37,19 +39,20 @@
                     <div class="card-footer">
                         <div class="card-link">
                                 {% if service.url %}
-                                    <div class="btn btn-primary btn-info float-center">
+                                    <div class="btn btn-primary btn-success float-center">
                                         <a href="{{ service.url }}" style="color:black">Visit the {{ service.name }} Webpage</a>
                                     </div>
                                     <br>
+                                    <hr>
                                 {% endif %}
 
                                 {% if service.email %}
-                                    <p style="font-size:1.0vw;color:black"> You can contact {{ service.name }} via email at: {{ service.email }}</p>
+                                    <p style="font-size:1.0vw;color:black"> <b> Email </b>: {{ service.email }}</p>
                                     <br>
                                 {% endif %}
 
                                 {% if service.phone_number %}
-                                    <p style="font-size:1.0vw;color:black"> Telephone Number: {{ service.phone_number }}</p>
+                                    <p style="font-size:1.0vw;color:black"> <b> Telephone Number: </b> {{ service.phone_number }}</p>
                                     <br>
                                 {% endif %}
 
@@ -65,16 +68,4 @@
         <h3> There are currently no services listed in our Database </h3>
 
     {% endif %}
-
-
-    <h2> Support services available at The University of Glasgow </h2>
-    <h3 style="color:white"> Counselling and Psychological Services (CAPS) </h3>
-    <img src="https://glasgowguardian.co.uk/wp-content/uploads/sites/2/2017/10/counsellingappointments_ne-Rhiannon-Doherty.jpg" width=20% height=auto></img>
-    <p> A UofG service that provides drop-in sessions, counselling and self-help </p>
-    <a href="https://www.gla.ac.uk/myglasgow/counselling/">Website</a>
-    <br />
-    <h3 style="color:white"> The Samaritans </h3>
-    <img src="http://www.nsft.nhs.uk/PublishingImages/Pages/Mental-health-experts-and-the-Samaritans-joint-call-to-break-suicide-taboo-/samaritans_280px.jpg" width=20% height=auto></img>
-    <p> A safe, confidential call-line to discuss anything on your mind. Available 24/7 without waiting lists and without costs. </p>
-    <a href="https://www.samaritans.org/branches/samaritans-glasgow/">Website</a>
 {% endblock %}
