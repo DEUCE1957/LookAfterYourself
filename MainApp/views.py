@@ -7,8 +7,8 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from MainApp.forms import UserForm, UserProfileForm, SubmitForm
-from MainApp.models import Tip,Service,suggestion, Submission
+from MainApp.forms import UserForm, UserProfileForm, SubmitForm, SuggestionForm
+from MainApp.models import Tip,Service,Suggestion, Submission
 from django.template import loader
 from MainApp.models import UserProfile
 
@@ -216,22 +216,25 @@ def user_logout(request):
 
 @login_required
 def suggestion(request):
-    submit_form = SubmitForm()
     # Check that the request was POST
     if request.method == 'POST':
-        submit_form = SubmitForm(request.POST)
+        suggestion_form = SuggestionForm(data=request.POST)
 
         # Check that the submitted form was valid
-        if submit_form.is_valid():
+        if suggestion_form.is_valid():
             # Save to the database if true
-            submit_form.save(commit=True)
+            sugg = suggestion_form.save()
+            sugg.save()
             # Return the user to the index page if form was successfully submitted
             return index(request)
         else:
             # Print the errors to the console
-            print(submit_form.errors)
+            print(suggestion_form.errors)
+    else:
+        # Render Form
+        suggestion_form = SuggestionForm()
     # Handle bad/new/no form cases and render any error messages
-    return render(request, 'MainApp/suggestion.html', {'submit_form': submit_form})
+    return render(request, 'MainApp/suggestion.html', {'suggestion_form': suggestion_form})
 
 
 @login_required
@@ -255,4 +258,7 @@ def submittip(request):
         submit_form = SubmitForm()
     # Handle bad/new/no form cases and render any error messages
     return render(request, 'MainApp/submittip.html', {'submit_form': submit_form})
+
+
+
 

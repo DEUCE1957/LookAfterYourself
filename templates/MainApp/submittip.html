@@ -26,32 +26,6 @@
 
         <br>
 
-        <!-- <form id="submit_form" method="post" action="/submittip/">
-            {% csrf_token %}
-
-          <div class="col-sm-12" align="center">
-                <label style="color: white; font-size: 18px;">Title:</label>
-                <br>
-                <input type="text" id="tiptitle" maxlength="128" placeholder="Title...">
-                <br>
-                <br>
-                <br>
-            </div>
-
-            <div class="col-sm-12" align="center">
-                <label style="color: white; font-size: 18px;">Tip Content:</label>
-                <br>
-                <textarea style="width:50%;" type="textarea" id="tip" placeholder="Enter Your Tip Here..." maxlength="1000" rows="5"></textarea>
-                <br>
-                <br>
-                <br>
-            </div>
-
-            <div class="col-sm-12">
-                <input style="width:20%;" type="submit" name="submit" value="Submit Tip" class="btn btn-primary btn-info btn-block"/>
-            </div>
-        </form> -->
-
         <form id="submit_form" method="post" action="/submittip/">
             {% csrf_token %}
             {% for hidden in submit_form.hidden_fields %}

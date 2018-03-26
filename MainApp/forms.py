@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from MainApp.models import UserProfile, Submission
+from MainApp.models import UserProfile, Submission, Suggestion
 
 
 class UserForm(forms.ModelForm):
@@ -44,3 +44,19 @@ class SubmitForm(forms.ModelForm):
         exclude = ('tipId',)
 
 
+class SuggestionForm(forms.ModelForm):
+    subject = forms.CharField(max_length=128,
+                            help_text="Subject:")
+    suggestion = forms.CharField(
+        max_length=1000,
+        help_text="Suggestion:",
+        widget=forms.Textarea
+    )
+
+    class Meta:
+        model = Suggestion
+        fields = ('subject', 'suggestion')
+        exclude = ('suggestionId',)
+        
+        
+        

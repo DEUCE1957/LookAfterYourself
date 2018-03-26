@@ -23,10 +23,10 @@ class UserProfile(models.Model):
     # Override the __unicode__() method to return out something meaningful!
     def __str__(self):
         return self.user.username
-
-
-class suggestion(models.Model):
-    suggestionId=models.AutoField(primary_key=True)
+        
+        
+class Suggestion(models.Model):
+    suggestionId = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=128)
     suggestion = models.CharField(max_length=1000)
 
