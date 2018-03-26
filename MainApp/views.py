@@ -24,14 +24,18 @@ import datetime
 
 import MainApp.calendarlogic as calendarlogic
 from MainApp.forms import eventForm
+from MainApp.models import Post
+from django.views.generic import ListView, DetailView
 
+class PostsListView(ListView): # представление в виде списка
+    model = Post                   # модель для представления
+
+class PostDetailView(DetailView): # детализированное представление модели
+    model = Post
 
 def index(request):
     context_dict = {'custom_message':"This is a customised message"}
     return render(request,'MainApp/index.html', context=context_dict)
-
-def blog(request):
-    return render(request,'MainApp/blog.html', context={})
 
 def search(request):
     return render(request,'MainApp/searchresults.html', context={})
@@ -39,6 +43,8 @@ def search(request):
 def tips(request):
     posts = Tip.objects.all()
     return render(request,'MainApp/tips.html', context={'posts': posts})
+
+
 
 
 def lazy_load_posts(request):

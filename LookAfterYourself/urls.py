@@ -26,7 +26,7 @@ class MyRegistrationView(RegistrationView):
 
 urlpatterns = [
     url(r'^$',views.index, name='index'),
-    url(r'^blog', views.blog, name='blog'),
+    url(r'^blog/', include('MainApp.urls')),
     url(r'^tips', views.tips, name='tips'),
     url(r'^support', views.service, name='support'),
     url(r'^calendar', views.calendar, name='calendar'),

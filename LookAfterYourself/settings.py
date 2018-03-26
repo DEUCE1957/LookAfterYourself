@@ -22,12 +22,12 @@ LOGIN_URL = 'http://lookafteryourself.pythonanywhere.com/'
 
 STATICFILES_DIRS = [STATIC_DIR, ]
 
-#Media Files
+# Media Files
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-#Something along these lines for the Google key
-#GOOGLE_KEY = open('google.key', 'r').read().strip()
+# Something along these lines for the Google key
+# GOOGLE_KEY = open('google.key', 'r').read().strip()
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,7 +40,9 @@ SECRET_KEY = 'jeumg_&jt31g#ul4uztb50hxvy*!jyv0^q=$8p9!v@+74epgx%'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+DISQUS_API_KEY = 'z1sp1m04HtsZ1XScMxCqoMvcmyD0BevK2cWLMDvKxq01BeZqoU7kVEFYJvUfZPrQ'
+DISQUS_WEBSITE_SHORTNAME = 'lookafteryourself'
+SITE_ID = 1
 
 # Application definition
 
@@ -53,7 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MainApp',
     'registration',
-    'blog',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ ROOT_URLCONF = 'LookAfterYourself.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'LookAfterYourself.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -97,7 +97,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -117,17 +116,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': { 'min_length': 6, }
+        'OPTIONS': {'min_length': 6, }
     },
 ]
 
-#Password Hasing
-#Uses PBKDF2 algorithm | https://en.wikipedia.org/wiki/PBKDF2
+# Password Hasing
+# Uses PBKDF2 algorithm | https://en.wikipedia.org/wiki/PBKDF2
 PASSWORD_HASHERS = [
-'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -142,13 +140,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 
-#Registration package configuration
+# Registration package configuration
 
 # If True, users can register
 REGISTRATION_OPEN = True
@@ -161,4 +158,3 @@ LOGIN_REDIRECT_URL = '/'
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
 LOGIN_URL = '/accounts/login/'
-
