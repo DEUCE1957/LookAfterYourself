@@ -11,9 +11,11 @@ import datetime
 
 import re
 
-##Copy pasted from Google's quickStart
+from LookAfterYourself.settings import BASE_DIR
+
+##Partially copy pasted from Google's quickStart
 SCOPES = 'https://www.googleapis.com/auth/calendar'
-CLIENT_SECRET_FILE = 'client_secret.json'
+#CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -24,24 +26,25 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
+    #home_dir = os.path.expanduser('~')
+    #credential_dir = os.path.join(home_dir, '.credentials')
+    credential_dir = os.path.join(BASE_DIR, 'putTheCredentialsHere')
+    #if not os.path.exists(credential_dir):
+    #    os.makedirs(credential_dir)
     credential_path = os.path.join(credential_dir,
                                    'calendar-python-quickstart.json')
 
     store = Storage(credential_path)
     credentials = store.get()
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        if flags:
-            credentials = tools.run_flow(flow, store, flags)
-        else: # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
-    print(credentials)
+##    if not credentials or credentials.invalid:
+##        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+##        flow.user_agent = APPLICATION_NAME
+##        if flags:
+##            credentials = tools.run_flow(flow, store, flags)
+##        else: # Needed only for compatibility with Python 2.6
+##            credentials = tools.run(flow, store)
+##        print('Storing credentials to ' + credential_path)
+##    print(credentials)
     return credentials
 
 #Creates a recourse for calendar
