@@ -16,23 +16,14 @@ class Tip(models.Model):
         return str(self.tipId)
 
 
-class SubmittedTip(models.Model):
-    tipId = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=128)
-    tip = models.CharField(max_length=1000)
-
-    def __str__(self):
-        return str(self.tipId)
-
-
 class UserProfile(models.Model):
     # Links UserProfile to a User model instance.
     user = models.OneToOneField(User,on_delete=models.PROTECT)
-    is_moderator = models.BooleanField(default=False)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     # Override the __unicode__() method to return out something meaningful!
     def __str__(self):
         return self.user.username
+
 
 class suggestion(models.Model):
     suggestionId=models.AutoField(primary_key=True)
@@ -41,6 +32,7 @@ class suggestion(models.Model):
 
     def __str__(self):
         return str(self.suggestionId)
+
 
 class Service(models.Model):
     serviceId=models.AutoField(primary_key=True)
@@ -58,3 +50,11 @@ class Service(models.Model):
     def __str__(self):
         return str(self.serviceId)
 
+
+class Submission(models.Model):
+    tipId = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=128)
+    tip = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return str(self.tipId)

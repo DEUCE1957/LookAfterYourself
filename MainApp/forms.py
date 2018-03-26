@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from MainApp.models import UserProfile, SubmittedTip
+from MainApp.models import UserProfile, Submission
 
 
 class UserForm(forms.ModelForm):
@@ -31,12 +31,15 @@ class eventForm(forms.Form):
 
 class SubmitForm(forms.ModelForm):
     title = forms.CharField(max_length=128,
-                            help_text="Enter the title of your tip.")
-    tip = forms.CharField(max_length=1000,
-                          help_text="Enter the content of your tip")
+                            help_text="Tip Title:")
+    tip = forms.CharField(
+        max_length=1000,
+        help_text="Tip Content:",
+        widget=forms.Textarea
+    )
 
     class Meta:
-        model = SubmittedTip
+        model = Submission
         fields = ('title', 'tip')
         exclude = ('tipId',)
 

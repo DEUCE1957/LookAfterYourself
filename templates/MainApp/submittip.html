@@ -26,7 +26,7 @@
 
         <br>
 
-        <form method="post" id="submit_form" action="/">
+        <!-- <form id="submit_form" method="post" action="/submittip/">
             {% csrf_token %}
 
           <div class="col-sm-12" align="center">
@@ -48,9 +48,28 @@
             </div>
 
             <div class="col-sm-12">
-                <input style="width:20%;" type="submit" name="submit" value="Submit Tip!" id="submitButton" class="btn btn-primary btn-info btn-block"/>
+                <input style="width:20%;" type="submit" name="submit" value="Submit Tip" class="btn btn-primary btn-info btn-block"/>
             </div>
+        </form> -->
+
+        <form id="submit_form" method="post" action="/submittip/">
+            {% csrf_token %}
+            {% for hidden in submit_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in submit_form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+            <br>
+            <br>
+                {{ field }}
+            <br>
+            <br>
+            {% endfor %}
+            <br>
+            <input style="width:20%;" type="submit" name="submit" value="Submit Tip" class="btn btn-primary btn-info btn-block"/>
         </form>
+
     </div>
     <br>
     <br>
