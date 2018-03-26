@@ -39,6 +39,12 @@ SECRET_KEY = 'jeumg_&jt31g#ul4uztb50hxvy*!jyv0^q=$8p9!v@+74epgx%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#Google Calendar API credentials path
+CALENDAR_CREDENTIAL_DIR = os.path.join(BASE_DIR, 'putTheCredentialsHere')
+CALENDAR_CREDENTIAL_PATH = os.path.join(CALENDAR_CREDENTIAL_DIR,
+                                   'calendar-python-quickstart.json')
+
+
 ALLOWED_HOSTS = ['*']
 DISQUS_API_KEY = 'z1sp1m04HtsZ1XScMxCqoMvcmyD0BevK2cWLMDvKxq01BeZqoU7kVEFYJvUfZPrQ'
 DISQUS_WEBSITE_SHORTNAME = 'lookafteryourself'

@@ -11,40 +11,14 @@ import datetime
 
 import re
 
-from LookAfterYourself.settings import BASE_DIR
+from LookAfterYourself.settings import CALENDAR_CREDENTIAL_PATH
 
-##Partially copy pasted from Google's quickStart
 SCOPES = 'https://www.googleapis.com/auth/calendar'
-#CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 def get_credentials():
-    """Gets valid user credentials from storage.
 
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
-    #home_dir = os.path.expanduser('~')
-    #credential_dir = os.path.join(home_dir, '.credentials')
-    credential_dir = os.path.join(BASE_DIR, 'putTheCredentialsHere')
-    #if not os.path.exists(credential_dir):
-    #    os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'calendar-python-quickstart.json')
-
-    store = Storage(credential_path)
+    store = Storage(CALENDAR_CREDENTIAL_PATH)
     credentials = store.get()
-##    if not credentials or credentials.invalid:
-##        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-##        flow.user_agent = APPLICATION_NAME
-##        if flags:
-##            credentials = tools.run_flow(flow, store, flags)
-##        else: # Needed only for compatibility with Python 2.6
-##            credentials = tools.run(flow, store)
-##        print('Storing credentials to ' + credential_path)
-##    print(credentials)
     return credentials
 
 #Creates a recourse for calendar
@@ -56,28 +30,6 @@ def service():
 
 def getDateTime(time):
     return datetime.datetime.strptime(time,"%Y-%m-%dT%H:%M:%SZ")
-
-##def createTestEvent(ser):
-##    event = {
-##  'summary': 'Google I/O 2015',
-##  'location': '800 Howard St., San Francisco, CA 94103',
-##  'description': 'A chance to hear more about Google\'s developer products.',
-##  'start': {
-##    'dateTime': datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%dT%H:%M:%S"),
-##    'timeZone': 'Etc/GMT+0',
-##  },
-##  'end': {
-##    'dateTime': datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(hours=1), "%Y-%m-%dT%H:%M:%S"),
-##    'timeZone': 'Etc/GMT+0',
-##  },
-##  'recurrence': [
-##    'RRULE:FREQ=DAILY;COUNT=2'
-##  ],
-##  'attendees': [],
-##  'reminders': {},}
-##    event = ser.events().insert(calendarId='primary', body=event).execute()
-##    print(event)
-
 
 
 def createEvent(name, startDate, startTime, endDate, endTime, description="", location=""):
