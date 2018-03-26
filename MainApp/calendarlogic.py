@@ -138,7 +138,7 @@ def calendarContext():
 
 def eventContext(eventID):
     #We try this a few times
-    if not eventID[:4] == "fake":
+    try:
         for x in range(3):
             try:
                 eventRes = service().events()
@@ -155,6 +155,9 @@ def eventContext(eventID):
                 return contextDict
             except OSError:
                 continue
+    except Exception:
+        #The case where the event doesn't exist
+        return fakeContext("The event doesn't exist.")
     print("We got nowhere")
     contextDict = fakeContext("This would be the next upcoming event, but we have an error")
     contextDict["prev"] = "fakeIDprev"

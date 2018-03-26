@@ -26,23 +26,25 @@ Calendar
             - {{endTime}}
         {% endif %}</p>
 		<div id = "readMore" style="display:none;"><p>{{description}}</p><p>{{location}}</p></div>
-		<button type="button" id="readMoreButton" class = "readMoreButton" onclick="readMoreFunction()"><p><span>Read more</span></p></button>
+		<button type="button" id="readMoreButton" class = "readMoreButton" onclick="readMoreFunction()"><p><span id="ReadMoreText">Read more</span></p></button>
         {% else %}
         <h3>No upcoming events</h3>
         {% endif %}
     </div>
 </div>
 
-{% if user.is_superuser %}
+{% if user.is_staff %}
     <div>
         {% if message %}
         <p class="error">{{message}}</p>
         {% endif %}
+		<h3>Create a new event</h3>
         <form action="/calendar/" method="POST">{% csrf_token %}
              {{form.as_p}}
         <button type="submit">Submit</button>
 	</form>
     </div>
 {% endif %}
+
 
 {% endblock %}
