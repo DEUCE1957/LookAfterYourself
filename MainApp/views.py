@@ -4,11 +4,10 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from MainApp.forms import UserForm, UserProfileForm, SubmitForm, SuggestionForm
-from MainApp.models import Tip,Service,Suggestion, Submission
+from MainApp.models import Tip, Service
 from django.template import loader
 from MainApp.models import UserProfile
 
@@ -27,24 +26,24 @@ from MainApp.forms import eventForm
 from MainApp.models import Post
 from django.views.generic import ListView, DetailView
 
-class PostsListView(ListView): # представление в виде списка
-    model = Post                   # модель для представления
-
-class PostDetailView(DetailView): # детализированное представление модели
-    model = Post
 
 def index(request):
     context_dict = {'custom_message':"This is a customised message"}
     return render(request,'MainApp/index.html', context=context_dict)
 
+class PostsListView(ListView):
+    model = Post
+
+class PostDetailView(DetailView):
+    model = Post
+
 def search(request):
     return render(request,'MainApp/searchresults.html', context={})
 
 def tips(request):
+    # set posts to equal all entries from the Tip model
     posts = Tip.objects.all()
     return render(request,'MainApp/tips.html', context={'posts': posts})
-
-
 
 
 def lazy_load_posts(request):
@@ -64,46 +63,55 @@ def lazy_load_posts(request):
 
 
 def depression(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='depression')
     return render(request,'MainApp/depression.html', context={'posts': posts})
 
 
 def adhd(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='adhd')
     return render(request,'MainApp/adhd.html', context={'posts': posts})
 
 
 def anxiety(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='anxiety')
     return render(request,'MainApp/anxiety.html', context={'posts': posts})
 
 
 def bipolar(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='bipolar')
     return render(request,'MainApp/bipolar.html', context={'posts': posts})
 
 
 def eatingdisorder(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='eatingdisorder')
     return render(request,'MainApp/eatingdisorder.html', context={'posts': posts})
 
 
 def ocd(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='ocd')
     return render(request,'MainApp/ocd.html', context={'posts': posts})
 
 
 def ptsd(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='ptsd')
     return render(request,'MainApp/ptsd.html', context={'posts': posts})
 
 
 def general(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='general')
     return render(request,'MainApp/general.html', context={'posts': posts})
 
 
 def addiction(request):
+    # set posts to equal a filtered list of entries from the Tip model based on the tags
     posts = Tip.objects.filter(tags__contains='addiction')
     return render(request,'MainApp/addiction.html', context={'posts': posts})
 
@@ -220,7 +228,8 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect(reverse('index'))
 
-@login_required
+
+@login_required  # set so that only logged in users are able to submit suggestions
 def suggestion(request):
     # Check that the request was POST
     if request.method == 'POST':
@@ -243,7 +252,7 @@ def suggestion(request):
     return render(request, 'MainApp/suggestion.html', {'suggestion_form': suggestion_form})
 
 
-@login_required
+@login_required  # set so that only logged in users are able to submit suggestions
 def submittip(request):
     # Check that the request was POST
     if request.method == 'POST':

@@ -1,3 +1,4 @@
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -23,9 +24,11 @@ class UserProfile(models.Model):
     # Override the __unicode__() method to return out something meaningful!
     def __str__(self):
         return self.user.username
-        
-        
+
+
+# Create model for table in the database to store user submitted suggestions
 class Suggestion(models.Model):
+    # Have the primary key as an auto-incrementing field to avoid clashes
     suggestionId = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=128)
     suggestion = models.CharField(max_length=1000)
@@ -61,12 +64,13 @@ class Submission(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=255) # заголовок поста
-    datetime = models.DateTimeField(u'Дата публикации') # дата публикации
-    content = models.TextField(max_length=10000) # текст поста
+    title = models.CharField(max_length=255)
+    datetime = models.DateTimeField(u'Date of publication')
+    content = models.TextField(max_length=10000)
 
     def __unicode__(self):
         return self.title
 
     def get_absolute_url(self):
         return "/blog/%i/" % self.id
+
