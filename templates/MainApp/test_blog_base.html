@@ -1,10 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load staticfiles %}
+<style>
+
+</style>
+
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title> Look After Yourself
+            {% block title %}
+            {% endblock %}
+    </title>
+    <!-- Bootstrap 4 -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Links External Flickity CSS Sheet -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    <!-- Links Custom Flickity CSS Sheet -->
+    <link rel="stylesheet" href="{% static "css/flickity.css" %}">
+
+    <!-- Links Custom Tips CSS Sheet -->
+    <link rel="stylesheet" href="{% static "css/tips.css" %}">
+
+    <!-- Links Default CSS Sheet -->
+    <link href="{% static "css/default.css" %}" rel="stylesheet" type="text/css" />
+
+    <script>
+        $(document).ready(function() {
+            $("[href]").each(function() {
+                if (this.href == window.location.href) {
+                    $(this).addClass("disabled");
+                }
+            });
+        });
+    </script>
+
+    {% block script %}
+    {% endblock %}
+
+    {% block meta %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-$END$
-</body>
+
+    <body>
+
+        <!-- Main Titles -->
+        <div style = "text-align:center;" onclick="document.location.href = '/';">
+        <h1> Look After Yourself </h1>
+        <h2> The Mental Health Support Application</h2>
+        </div>
+        <br>
+
+        <!-- The Horizontal Menu bar -->
+            <div class="inline btn-group btn-group-lg" style="width:100%">
+                {% if request.path != "/" %} <!-- not the Home/Index page -->
+                <a href="/" class="btn btn-primary btn-info btn-block">Home</a>
+                {% endif %}
+                <a href="/blog/" class="btn btn-primary btn-info btn-block">Blog</a>
+                <a href="/tips/" class="btn btn-primary btn-info btn-block">Tips</a>
+                <a href="/calendar/" class="btn btn-primary btn-info btn-block">Calendar</a>
+                <a href="/support/" class="btn btn-primary btn-info btn-block">Support Services</a>
+                {% if user.is_authenticated %}
+                <a href="/profile/" class="btn btn-primary btn-info btn-block">Profile</a>
+                <a href="{% url 'auth_logout' %}?next=/" class="btn btn-primary btn-info btn-block">Logout</a>
+                {% else %}
+                <a href="{% url 'auth_login' %}" class="btn btn-primary btn-info btn-block"> Log in</a>
+                <a href="{% url 'registration_register' %}" class="btn btn-primary btn-info btn-block">Register</a>
+                {% endif %}
+                <!-- Search Box -->
+                <a href="#modalSearch" class="btn btn-primary btn-info btn-block" data-toggle="modal" data-target="#modalSearch">Search</a>
+            </div>
+        <br class="clearBoth" />
+
+
+        <!-- Search Modal -->
+        <div id="modalSearch" class="modal fade" role="dialog">
+           <div class="modal-dialog">
+
+               <!-- Modal content-->
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h4 style="color:black"> Search </h4>
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   </div>
+                   <div class="modal-body">
+                       <script>
+                          (function() {
+                            var cx = '018121202783497550752:unjevlv3oyk';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(gcse, s);
+                          })();
+                        </script>
+                        <gcse:search></gcse:search>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   </div>
+               </div>
+
+           </div>
+        </div>
+
+
+        <br>
+        {% block content %}
+
+        {% endblock %}
+
+        <!-- Footer Bar -->
+        <div>
+                <ul id="Footer" style="list-style-type:none;color:black;margin:0;padding:0">
+                    {% if request.path != "/" %} <!-- not the Home/Index page -->
+                    <li id="FooterItem"><a href="/">Home</a></li>
+                    {% endif %}
+                    <li id="FooterItem"><a href="/blog/">Blog</a></li>
+                    <li id="FooterItem"><a href="/tips/">Tips</a></li>
+                    <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
+                    <li id="FooterItem"><a href="/support/">Support Services</a></li>
+                    {% if user.is_authenticated %}
+                    <li id="FooterItem"><a href="{% url 'auth_logout' %}?next=/">Logout</a></li>
+                    {% else %}
+                    <li id="FooterItem"><a href="{% url 'auth_login' %}">Log in</a></li>
+                    <li id="FooterItem"><a href="{% url 'registration_register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+        </div>
+
+        <p style="color:white"> &copy Web Application Development 2 - Team 3 Lab C </p>
+
+
+    </body>
 </html>
