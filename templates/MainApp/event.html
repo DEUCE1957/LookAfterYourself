@@ -30,12 +30,12 @@ Event {{name}}
 
 <div>
 {% if prev %}
-    <a href="/event/{{prev}}">Previous</a>
+    <a href="{% url 'event' prev %}">Previous</a>
 {% endif %}
 </div>
 <div>
 {% if next %}
-    <a href="/event/{{next}}">Next</a>
+    <a href="{% url 'event' next %}">Next</a>
 {% endif %}
 </div>
 

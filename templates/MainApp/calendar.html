@@ -20,7 +20,7 @@ Calendar
         {% if name and startTime %}
 
         <h3>The next upcoming event</h3>
-        <a href="/event/{{id}}">{{name}}</a></br>
+        <a href="{% url 'event' id %}">{{name}}</a></br>
         <p>{{startTime}}
         {% if endTime %}
             - {{endTime}}
@@ -39,7 +39,7 @@ Calendar
         <p class="error">{{message}}</p>
         {% endif %}
 		<h3>Create a new event</h3>
-        <form action="/calendar/" method="POST">{% csrf_token %}
+        <form action="{% url 'calendar' %}" method="POST">{% csrf_token %}
              {{form.as_p}}
         <button type="submit">Submit</button>
 	</form>
