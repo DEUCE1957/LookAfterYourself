@@ -120,11 +120,11 @@ def support(request):
     return render(request,'MainApp/support.html', context={})
 
 def calendar(request):
+    #Retrieves the next event and turns it into a context dictionary
     contextDict = calendarlogic.calendarContext()
-    if request.method == 'POST' and request.user.is_superuser:
+    #If the user is staff, show the form
+    if request.method == 'POST' and request.user.is_staff:
         form = eventForm(request.POST)
-
-        print(form)
         if form.is_valid():
             data = form.cleaned_data
             message = calendarlogic.createEvent(data["name"], data["startDate"], data["startTime"],
@@ -136,6 +136,7 @@ def calendar(request):
     return render(request,'MainApp/calendar.html', contextDict)
 
 def event(request, eventID):
+    #Return the context dictionary of a given event
     return render(request,'MainApp/event.html', context=calendarlogic.eventContext(eventID))
 
 def service(request):
