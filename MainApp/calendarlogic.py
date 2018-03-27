@@ -19,6 +19,7 @@ SCOPES = 'https://www.googleapis.com/auth/calendar'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
 #Gets the credentials used by the view
+#Throws an exception if credentials don't exists
 def get_credentials():
     store = Storage(CALENDAR_CREDENTIAL_PATH)
     credentials = store.get()
@@ -140,6 +141,8 @@ def calendarContext():
         except OSError:
             continue
     #For the times when the calendar doesn't work on PythonAnywhere
+        except AttributeError:
+            return fakeContext("The credentials were not found")
     print("We got nowhere")
     return fakeContext("This would be the next upcoming event, but we have an error")
 
