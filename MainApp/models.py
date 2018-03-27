@@ -75,7 +75,6 @@ class Submission(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    datetime = models.DateTimeField(u'Date of publication')
     content = models.TextField(max_length=10000)
 
     def __unicode__(self):
