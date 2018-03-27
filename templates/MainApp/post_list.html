@@ -1,8 +1,12 @@
 {% extends 'MainApp/test_blog_base.html' %}
 {% block content %}
+
     {% for post in object_list %}
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
+
+        <h2><center><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></center></h2>
+        <!-- For some reason unable to make css work - so it's inline. Sorry. -->
+        <p style="padding-left:500px;padding-right:500px;text-align:center">{{ post.content }}</p>
+
     {% empty %}
     <p>No posts</p>
     {% endfor %}
