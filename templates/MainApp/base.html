@@ -133,9 +133,9 @@
                     <li id="FooterItem"><a href="/">Home</a></li>
                     {% endif %}
                     <li id="FooterItem"><a href="/blog/">Blog</a></li>
-                    <li id="FooterItem"><a href="/tips/">Tips</a></li>
-                    <li id="FooterItem"><a href="/calendar/">Calendar</a></li>
-                    <li id="FooterItem"><a href="/support/">Support Services</a></li>
+                    <li id="FooterItem"><a href="{% url 'tips' %}">Tips</a></li>
+                    <li id="FooterItem"><a href="{% url 'calendar' %}">Calendar</a></li>
+                    <li id="FooterItem"><a href="{% url 'support' %}">Support Services</a></li>
                     {% if user.is_authenticated %}
                     <li id="FooterItem"><a href="{% url 'auth_logout' %}?next=/">Logout</a></li>
                     {% else %}

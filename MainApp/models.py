@@ -7,7 +7,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+# Create model to store tips in the database
 class Tip(models.Model):
+    # Create fields for the table
+
+    # Set tipId as AutoField and primary key so that the primary key is always unique to avoid clashes
     tipId = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128)
     tip = models.CharField(max_length=1000)
@@ -28,7 +32,9 @@ class UserProfile(models.Model):
 
 # Create model for table in the database to store user submitted suggestions
 class Suggestion(models.Model):
-    # Have the primary key as an auto-incrementing field to avoid clashes
+    # Create fields for the table
+
+    # Set suggestionId as AutoField and primary key so that the primary key is always unique to avoid clashes
     suggestionId = models.AutoField(primary_key=True)
     subject = models.CharField(max_length=128)
     suggestion = models.CharField(max_length=1000)
@@ -54,7 +60,11 @@ class Service(models.Model):
         return str(self.serviceId)
 
 
+# Create model for table in the database to store user submitted tips
 class Submission(models.Model):
+    # Create fields for the table
+
+    # Set tipId as AutoField and primary key so that the primary key is always unique to avoid clashes
     tipId = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128)
     tip = models.CharField(max_length=1000)

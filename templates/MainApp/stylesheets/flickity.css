@@ -19,7 +19,7 @@ body { font-family: sans-serif; }
   outline: 5px auto -webkit-focus-ring-color;
 }
 
-/* white circles */
+/* white unfilled dots to show number of carousel cells */
 .flickity-page-dots .dot {
   width: 12px;
   height: 12px;
@@ -27,7 +27,7 @@ body { font-family: sans-serif; }
   background: transparent;
   border: 2px solid white;
 }
-/* fill-in selected dot */
+/* fill in dot to show which cell carousel is currently on*/
 .flickity-page-dots .dot.is-selected {
   background: white;
 }

@@ -12,6 +12,11 @@ from MainApp.models import Tip,Service
 
 def populate():
     tips = [
+        {"title": "Learn how to calm your anxiety by relaxing the muscles in your body",
+          "tip": "Calm breathing and progressive muscle relaxation can you help to reduce some "
+          "of the anxious and tense feelings in your body.",
+          "tags": "ptsd anxiety general"},
+
         {"title": "Know your limitations, but focus on your strong points",
          "tip": "You probably can’t handle as much stress as other people."
                 "So maybe you don’t get as much done in a day. But the flip side of that "
@@ -22,6 +27,24 @@ def populate():
                 "thinking as schizophrenia. And we all know how many artists are bipolar.",
          "tags": "anxiety"},
 
+        {"title": "Create Space",
+          "tip": "Ask yourself what you need on a daily basis, and find storage bins or closets for "
+          "things you don’t. Designate specific areas for things like keys, bills, and other items "
+          "that can be easily misplaced. Throw away things you don’t need.",
+          "tags": "adhd"},
+
+         {"title": "Take a Shower",
+          "tip": "not a bath, a shower. use water as hot or cold as u like. u dont even need to wash."
+                " just get in under the water and let it run over you for a while. sit on the "
+                "floor if you gotta.",
+          "tags": "general depression"},
+
+        {"title": "Addiction =/= Bad/Weak",
+          "tip": "If you fall back into old patterns (backslide) a bit, talk to someone as soon as "
+          "possible. There's nothing to be ashamed about, but it's important to get help soon so that "
+          "all of the hard work you put into your recovery is not lost.",
+          "tags": "addiction"},
+
         {"title": "Staying Hydrated",
          "tip": "It's recommended that you drink between 6-8 glasses of fluid per day. Water is a cheap "
                 "and healthy option",
@@ -31,6 +54,17 @@ def populate():
          "tip": "Do something calming. Breathing exercises. Muscle relaxation. Meditation.",
          "tags": "general"},
 
+         {"title": "Use a calendar app or day planner",
+          "tip": "Effective use of a day planner or a calendar on your smartphone or computer can help you "
+          "remember appointments and deadlines. With electronic calendars, you can also set up automatic reminders "
+          "so scheduled events don’t slip your mind.",
+          "tags": "adhd"},
+
+        {"title": "Moisturise Everything",
+          "tip": "Use whatever lotion u like. unscented? dollar store lotion? fancy 48 hour lotion that makes u"
+          "smell like a field of wildflowers? use whatever u want, and use it all over.",
+          "tags": "depression"},
+
         {"title": "Figure Out Who Will Accept You",
          "tip": "A lot of us are charismatic in small doses. That gives people high expectations. But when we "
                 "can’t be “on” consistently enough to meet those expectations it feels like we’re letting people down. "
@@ -39,6 +73,20 @@ def populate():
                 "so well in some ways that it makes up for all the others.",
          "tags": "ptsd ocd anxiety bipolar"},
 
+         {"title": "Change",
+          "tip": "Put on some clean and comfortable clothes. It will make you feel better than you imagine.",
+          "tags": "general"},
+
+        {"title": "Use Lists",
+          "tip": "Make use of lists and notes to keep track of regularly scheduled tasks, projects, deadlines, and "
+          "appointments. If you decide to use a daily planner, keep all lists and notes inside it. You also have many "
+          "options for use on your smartphone or computer. Search for “to do” apps or task managers.",
+          "tags": "adhd general"},
+
+        {"title": "Avoid High-Risk Situations",
+          "tip": "Some common high-risk situations are described by the acronym, HALT: (H)ungy (A)ngry (L)onely (T)ired.",
+          "tags": "addiction"},
+
         {"title": "Don't Let People Treat You Badly",
          "tip": "A lot of us are easy prey for abusive partners and “friends” who want to make everyone around them as "
                 "miserable as they are. I dated a controlling guy in high school who subtly tried to change my opinion "
@@ -46,11 +94,41 @@ def populate():
                 "attention that I put up with it until my parents wouldn’t let me see him anymore.",
          "tags": "general"},
 
+         {"title": "Clean Something",
+          "tip": "doesn’t have to be anything big. organize one drawer of ur desk. wash five dirty dishes. do a load of "
+          "laundry. scrub the bathroom sink. ",
+          "tags": "general depression ocd"},
+
+        {"title": "Grounding",
+          "tip": "Grounding is a very helpful technique if you are experiencing flashbacks and you find yourself sometimes "
+          "losing touch with the present moment. Having this symptom of PTSD is not only terrifying for you, but it can also "
+          "be scary for people around you, such as friends and family. Grounding teaches you to stop losing touch with the "
+          "present moment by concentrating and focusing on the present or by directing your attention to something else.",
+          "tags": "ptsd"},
+
+        {"title": "Be Honest",
+          "tip": "An addiction requires lying. You have to lie about getting your drug, using it, hiding its consequences,"
+          " and planning your next relapse. An addiction is full of lying. By the time you've developed an addiction, "
+          "lying comes easily to you. After a while you get so good at lying that you end up lying to yourself. That's "
+          "why addicts don't know who they are or what they believe in.",
+          "tags": "addiction"},
+
+        {"title": "Deal With It Now",
+          "tip": "You can avoid forgetfulness, clutter, and procrastination by filing papers, cleaning up messes, or "
+          "returning phone calls immediately, not sometime in the future. If a task can be done in two minutes or less, "
+          "do it on the spot, rather than putting it off for later.",
+          "tags": "adhd"},
+
         {"title": "Get Treatment",
          "tip": "Please. Two of my friends committed suicide because they hadn’t dealt with their illnesses properly. "
                 "You might be ashamed, but there’s way more shame in hurting people who need you because you don’t "
                 "want to admit that you have a problem.",
          "tags": "addiction depression eatingdisorder"},
+
+        {"title": "Blast Music",
+          "tip": " listen to something upbeat and dancey and loud, something that’s got lots of energy. sing to "
+          "it, dance to it, even if you suck at both.",
+          "tags": "general depression bipolar"},
 
         {"title": "Break Tasks Down Into Smaller Steps",
          "tip": "A common symptom of depression is the feeling of being overwhelmed even by ordinary day-to-day tasks. "
@@ -59,12 +137,23 @@ def populate():
                 "overwhelmed is to break down the activity in small, easier-to-achieve chunks.",
          "tags": "anxiety depression ocd"},
 
+        {"title": "Make Yourself Some Food",
+          "tip": "don’t just grab a granola bar to munch. take the time and make food. even if it’s ramen. "
+          "add something special to it, like a hard boiled egg or some veggies. prepare food, it tastes way "
+          "better, and you’ll feel like you accomplished something.",
+          "tags": "general depression eatingdisorder"},
+
         {"title": "Avoid Isolation By Connecting With People",
          "tip": "People with depression often cut themselves off from the outside world. But becoming withdrawn and "
                 "less talkative can create a downward spiral. Connection is one of the six basic emotional needs "
                 "and when depression takes hold it is often the need that gets most neglected in favour of satisfying "
                 "the need for comfort through isolation.",
          "tags": "depression general"},
+
+        {"title": "Make Something",
+          "tip": "write a short story or a poem, draw a picture, color a picture, fold origami, crochet or knit, "
+          "sculpt something out of clay, anything artistic. even if you don’t think you’re good at it.",
+          "tags": "general depression ocd anxiety"},
 
         {"title": "Accept Personal Responsibility",
          "tip": "The power of the mind is an amazing thing, and although pharmaceutical intervention is certainly "
@@ -74,12 +163,29 @@ def populate():
                 "by the individual to make them feel more powerful and happy.",
          "tags": "depression"},
 
+        {"title": "Go Outside",
+          "tip": "take a walk. sit in the grass. look at the clouds. smell flowers. put your hands in the dirt "
+          "and feel the soil against your skin.",
+          "tags": "depression"},
+
+        {"title": "Call Someone",
+          "tip": "call a loved one, a friend, a family member, call a chat service if you have no one else to call. "
+          "talk to a stranger on the street. have a conversation and listen to someone’s voice. if you can’t, text "
+          "or email or whatever, just have some social interaction with another person. even if you don’t say "
+          "much, listen to them.",
+          "tags": "general depression anxiety bipolar"},
+
         {"title": "Have Regular Sleep Time",
          "tip": "Getting a good night’s sleep is important for everyone but especially for those suffering from "
                 "depression. Conversely too much sleep (over eight hours) can exacerbate depression. Regular "
                 "sleeping hours are essential in managing mood and having a regular bedtime and rise time is "
                 "important. Go back to basics, set alarms, create a routine and introduce calming rituals before bed.",
-         "tags": "general"}]
+         "tags": "general"},
+
+        {"title": "Have Pets?",
+          "tip": "cuddle your pets if you have them/can cuddle them. take pictures of them. talk to them. tell them "
+          "how u feel, about your favorite movie, a new game coming out. anything you are excited about for the future.",
+          "tags": "general depression anxiety bipolar"}]
 
     Services = [
         {

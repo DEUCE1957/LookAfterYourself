@@ -1,3 +1,5 @@
+#This module controls the logic of Google Calendar
+
 from __future__ import print_function
 import httplib2
 import os
@@ -15,8 +17,10 @@ from LookAfterYourself.settings import CALENDAR_CREDENTIAL_PATH
 
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
-def get_credentials():
 
+#Gets the credentials used by the view
+#Throws an exception if credentials don't exists
+def get_credentials():
     store = Storage(CALENDAR_CREDENTIAL_PATH)
     credentials = store.get()
     return credentials
@@ -28,10 +32,11 @@ def service():
     service = discovery.build('calendar', 'v3', http=http)
     return service
 
+#Turns Google's string expression of dates into an actual datetime object
 def getDateTime(time):
     return datetime.datetime.strptime(time,"%Y-%m-%dT%H:%M:%SZ")
 
-
+#Creates an event and submits it to Google Calendar
 def createEvent(name, startDate, startTime, endDate, endTime, description="", location=""):
     ser = service()
     event = {
@@ -55,13 +60,15 @@ def createEvent(name, startDate, startTime, endDate, endTime, description="", lo
         event = ser.events().insert(calendarId='primary', body=event).execute()
         return "Event succesfully created"
     except Exception as e:
-        print(e)
         return re.findall(r'"([^"]*)"', str(e))[0]
 
+#Creates a context dictionary from a given event object
 def context(event):
     contextDict = {}
     now = datetime.datetime.now()
     contextDict["name"] = event["summary"]
+
+    #This code not only retrieves the time, but also formats it in a way that looks pretty
     startTime = getDateTime(event["start"]["dateTime"])
     #If the year is different from the current year, we add it
     if startTime.year != now.year:
@@ -76,6 +83,7 @@ def context(event):
         contextDict["endTime"] = datetime.datetime.strftime(endTime,"%a, %d %B, %H:%M")
     else:
         contextDict["endTime"] = datetime.datetime.strftime(endTime,"%H:%M")
+        
     contextDict["description"] = event.get("description","")
     contextDict["color"] = event.get("colorId", "#ffffff")
     contextDict["id"] = event["id"]
@@ -133,6 +141,8 @@ def calendarContext():
         except OSError:
             continue
     #For the times when the calendar doesn't work on PythonAnywhere
+        except AttributeError:
+            return fakeContext("The credentials were not found")
     print("We got nowhere")
     return fakeContext("This would be the next upcoming event, but we have an error")
 
@@ -164,11 +174,3 @@ def eventContext(eventID):
     contextDict["next"] = "fakeIDnext"
     return contextDict
 
-if __name__ == '__main__':
-    try:
-        import argparse
-        flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-    except ImportError:
-        flags = None
-    createEvent("AA", 2018,4,4,12,0,2018,4,5,3,3,"Let us see if this works")
-    print("created event")

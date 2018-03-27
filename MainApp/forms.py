@@ -29,34 +29,46 @@ class eventForm(forms.Form):
                                   required = False)
 
 
+# Form for users to submit their own tips
 class SubmitForm(forms.ModelForm):
+    # Initialise fields as charfields with maximum character limits and help text which will display on the page
     title = forms.CharField(max_length=128,
                             help_text="Tip Title:")
     tip = forms.CharField(
         max_length=1000,
         help_text="Tip Content:",
+        # Have this charfield display as a text area so there is more room for the user to write and view what they have written
         widget=forms.Textarea
     )
 
     class Meta:
+        # Set the model for the form
         model = Submission
+        # Set the fields to be shown on the form
         fields = ('title', 'tip')
+        # Set the fields to be hidden as they are assigned automatically
         exclude = ('tipId',)
 
 
+# Form for users to submit suggestions for the site
 class SuggestionForm(forms.ModelForm):
+    # Initialise fields as charfields with maximum character limits and help text which will display on the page
     subject = forms.CharField(max_length=128,
                             help_text="Subject:")
     suggestion = forms.CharField(
         max_length=1000,
         help_text="Suggestion:",
+        # Have this charfield display as a text area so there is more room for the user to write and view what they have written
         widget=forms.Textarea
     )
 
     class Meta:
+        # Set the model for the form
         model = Suggestion
+        # Set the fields to be shown on the form
         fields = ('subject', 'suggestion')
+        # Set the fields to be hidden as they are assigned automatically
         exclude = ('suggestionId',)
-        
-        
-        
+
+
+
