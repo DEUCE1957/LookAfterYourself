@@ -28,10 +28,13 @@
 
         <form id="suggestion_form" method="post" action="/suggestion/">
             {% csrf_token %}
+            <!-- hide all excluded fields -->
             {% for hidden in suggestion_form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
+            <!-- loop included fields -->
             {% for field in suggestion_form.visible_fields %}
+            <!-- show the help text label for each field and then the field for input by the user -->
                 {{ field.errors }}
                 {{ field.help_text }}
             <br>

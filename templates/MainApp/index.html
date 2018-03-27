@@ -2,50 +2,105 @@
 {% extends 'MainApp/base.html' %}
 {% load staticfiles %}
 
-<!-- Home page so this is empty-->
 {% block title %}
+    - Tips
 {% endblock %}
 
 {% block script %}
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://github.com/metafizzy/flickity-bg-lazyload/blob/master/bg-lazyload.js"></script>
 {% endblock %}
 
-{% block meta %}
+<link rel="stylesheet" href="./stylesheets/tips.css">
 
+<script type=”text/javascript”>window.CSRF_TOKEN = “{{ csrf_token }}”;</script>
+
+{% block meta %}
 {% endblock %}
 
 {% block content %}
 
+    <br>
+    <br>
+    <br>
 
-        <br>
-        <!-- Carrousel -->
-        <br>
-        <br>
-        <div class="carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "autoPlay": 2000 }'>
-            <div class="carousel-cell" align="center" style="background-repeat: no-repeat; background-position: center;
-            background-image: url({% static "blog.png" %});"
-            onclick="document.location.href='/blog/';"></div>
-            <div class="carousel-cell" align="center" style="background-repeat: no-repeat; background-position: center;
-            background-image: url({% static "tips.png" %});"
-            onclick="document.location.href='/tips/';"></div>
-            <div class="carousel-cell" align="center" style="background-repeat: no-repeat; background-position: center;
-            background-image: url({% static "calendar.png" %});"
-            onclick="document.location.href='/calendar/';"></div>
-            <div class="carousel-cell" align="center" style="background-repeat: no-repeat; background-position: center;
-            background-image: url({% static "support.png" %});"
-            onclick="document.location.href='/support/';"></div>
-
+    <div class="section1" id="section1">
+        <!-- Only show the submit tip button if a user has logged in -->
+        {% if user.is_authenticated %}
+        <div class="submitTip" id="submitTip">
+            <button class="submitButton" type="button" onclick="document.location.href='/submittip/'">Submit Tip!</button>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-            <span>
-                <h2 style = "text-align:center;color:rgb(81,153,255)">A Central Portal for Mental Health Support at the <img src="static/UniversityOfGlasgow.png" alt="University of Glasgow" style="border:0px solid black;filter:saturate(-2)" width=20% height=auto> </h2>
+        {% endif %}
 
-            </span>
-        <br>
-        <br>
+        <div class="dropdown" id="dropdown">
+            <!-- Create dropdown menu from input box with links to filtered pages -->
+            <input id="keyInput" style="width: 30%;" type="text" onclick="showDropdown()" onkeyup="filterSearch()" placeholder="Search for keyword..." class="dropLst">
+            <div id="myDropdown" class="dropdown-content">
+                <a href="/addiction.html">Addiction</a>
+                <a href="/adhd.html">ADHD</a>
+                <a href="/anxiety.html">Anxiety</a>
+                <a href="/bipolar.html">Bipolar Disorder</a>
+                <a href="/depression.html">Depression</a>
+                <a href="/eatingdisorder.html">Eating Disorder</a>
+                <a href="/ocd.html">OCD</a>
+                <a href="/ptsd.html">PTSD</a>
+                <a href="/general.html">General</a>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <script>
+        /* show dropdown list of links when the user clicks on the input box */
+        function showDropdown() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        /* filter the results shown on the dropdown list based on what the user enters into the input box */
+        function filterSearch() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("keyInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+
+        /* close the dropdown list when the user clicks outside of it */
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropLst')) {
+
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+            }
+        }
+    </script>
+
+<div id="columns">
+    <div id=”posts”>
+        <!-- Loop over each tip saved in the tips table in the database -->
+        {% for post in posts %}
+        <div>
+            <tip>
+            <!-- print each title and tip content -->
+            <tiptitle>{{ post.title }}</tiptitle>
+            <br>
+            <tipcaption>{{ post.tip }}</tipcaption>
+            </tip>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}

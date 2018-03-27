@@ -23,6 +23,7 @@
     <br>
 
     <div class="section1" id="section1">
+        <!-- Only show the submit tip button if a user has logged in -->
         {% if user.is_authenticated %}
         <div class="submitTip" id="submitTip">
             <button class="submitButton" type="button" onclick="document.location.href='/submittip/'">Submit Tip!</button>
@@ -30,6 +31,7 @@
         {% endif %}
 
         <div class="dropdown" id="dropdown">
+            <!-- Create dropdown menu from input box with links to filtered pages -->
             <input id="keyInput" style="width: 30%;" type="text" onclick="showDropdown()" onkeyup="filterSearch()" placeholder="Search for keyword..." class="dropLst">
             <div id="myDropdown" class="dropdown-content">
                 <a href="/addiction.html">Addiction</a>
@@ -48,11 +50,12 @@
     <br>
 
     <script>
-        /* Show dropdown list when user clicks on the input box */
+        /* show dropdown list of links when the user clicks on the input box */
         function showDropdown() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
 
+        /* filter the results shown on the dropdown list based on what the user enters into the input box */
         function filterSearch() {
             var input, filter, ul, li, a, i;
             input = document.getElementById("keyInput");
@@ -68,7 +71,7 @@
             }
         }
 
-        // Close the dropdown menu if the user clicks outside of it
+        /* close the dropdown list when the user clicks outside of it */
         window.onclick = function(event) {
             if (!event.target.matches('.dropLst')) {
 

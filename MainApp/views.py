@@ -253,7 +253,7 @@ def suggestion(request):
     return render(request, 'MainApp/suggestion.html', {'suggestion_form': suggestion_form})
 
 
-@login_required  # set so that only logged in users are able to submit suggestions
+@login_required  # set so that only logged in users are able to submit tips
 def submittip(request):
     # Check that the request was POST
     if request.method == 'POST':

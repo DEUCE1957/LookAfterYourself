@@ -28,10 +28,13 @@
 
         <form id="submit_form" method="post" action="/submittip/">
             {% csrf_token %}
+            <!-- hide the excluded fields -->
             {% for hidden in submit_form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
+            <!-- loop included fields -->
             {% for field in submit_form.visible_fields %}
+            <!-- show the help text label for each field and then the field for input by the user -->
                 {{ field.errors }}
                 {{ field.help_text }}
             <br>
