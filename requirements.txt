@@ -512,3 +512,4 @@ zope.testbrowser==4.0.4
 zope.testing==4.5.0
 zope.traversing==4.0.0
 zope.viewlet==4.0.0
+django-disqus==0.5
