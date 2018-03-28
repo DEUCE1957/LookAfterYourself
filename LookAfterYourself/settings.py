@@ -26,8 +26,6 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-# Something along these lines for the Google key
-# GOOGLE_KEY = open('google.key', 'r').read().strip()
 
 
 # Quick-start development settings - unsuitable for production

@@ -8,14 +8,16 @@
 
 {% block title_block %}
 Calendar
-{% endblock %}
+{% endblock %}
+
 
 {% block content %}
+<!--The Google Calendar-->
 <div id="container">
     <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;height=600&amp;wkst=2&amp;bgcolor=%2300cccc&amp;src=lookafteryourself2018%40gmail.com&amp;color=%231B887A"
                 width="800" height="600" frameborder="0" scrolling="no" style="img"></iframe>
-    
 
+<!--The next upcoming event-->
     <div class="event" id="eventHolder">
         {% if name and startTime %}
 
@@ -26,6 +28,7 @@ Calendar
             - {{endTime}}
         {% endif %}</p>
 		<div id = "readMore" style="display:none;"><p>{{description}}</p><p>{{location}}</p></div>
+		<!--Read More button-->
 		<button type="button" id="readMoreButton" class = "readMoreButton" onclick="readMoreFunction()"><p><span id="ReadMoreText">Read more</span></p></button>
         {% else %}
         <h3>No upcoming events</h3>
@@ -33,6 +36,7 @@ Calendar
     </div>
 </div>
 
+<!--Form for creating events if the user is staff-->
 {% if user.is_staff %}
     <div>
         {% if message %}

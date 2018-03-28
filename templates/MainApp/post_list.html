@@ -11,8 +11,10 @@
 
 	<div class = "post">
         <h2><center><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></center></h2>
+        <!--The overFlowClipped hides overflow and fixes the height to 200 px-->
         <p class = "overFlowClipped">{{ post.content }}</p>
-		<button type="button" class = "readMoreButton" onclick="readMoreFunction()"><p><span class="ReadMoreText">Read more</span></p></button>
+        <!--The readMoreButton toggles between hiding overflow and showing it-->
+		<button type="button" class = "readMoreButton" ><p><span class="ReadMoreText">Read more</span></p></button>
 	</div>
 
     {% empty %}
