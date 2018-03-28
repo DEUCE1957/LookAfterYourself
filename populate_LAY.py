@@ -290,6 +290,32 @@ def populate():
                        "nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum " \
                        "sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. ",
         },
+        {
+            "title": "The 'One Hour Rule' I Use on Days When Mental Illness Makes It Hard to Get Out of Bed",
+            "content":  "As much as I would love to be one of those people who jumps out of bed in the mornings, wide eyed, refreshed and ready to take on the day ahead, it just isn’t me. " \
+                        "I am not a morning person at all. That being said, on the good days when I plan things to look forward to, or am in a good head space, mornings are inevitably easier. " \
+                        "However, on the difficult mornings, my bed holds me hostage. I don’t want to face the day, I don’t want to wake up and I certainly don’t want to leave the cosy sanctuary " \
+                        "of my blankets. " \
+                        "" \
+                        "But I have found something that helps. I call it the “one hour rule.” " \
+                        "" \
+                        "Within one hour of waking up, I have to be out of my bed. If I look at the clock when " \
+                        "I wake up and it is 9 a.m., by 10 a.m., I cannot still be lying in bed. I am a competitive person, and even some gentle competition with my own brain helps me sometimes. " \
+                        "" \
+                        "I tell myself: Just try. Get out of bed and get up. If it doesn’t work, and in an hour you feel worse, then you can go back to bed. And sometimes, I will. And that’s OK. " \
+                        "But I make myself try. Try to taste the day. I don’t have to like it, I just have to do it. " \
+                        "" \
+                        "I have to be up though. I have to be doing or moving or creating. It can work like a domino effect. If I am up, I may as well take a shower, may as well make some breakfast, " \
+                        "and hey — seeing as I’m already up, I might just leave the house today. " \
+                        "" \
+                        "I can’t promise that it always works like this, but one thing I do know is that I always feel better for giving it a go. " \
+                        "" \
+                        "I encourage you to give yourself one hour, 60 minutes, 3,600 seconds. " \
+                        "It might suck, and you may get out of your bed just to end up on the floor instead, or sitting on the landing, or you might make it to sit on the shower floor. But at least you tried. " \
+                        "You got up and you gave today a chance. You did the absolute best that you could, and there is no shame in that. It does not go unnoticed. " \
+                        "" \
+                        "(credit: https://themighty.com/2017/05/one-hour-rule-mental-illness-getting-out-of-bed/",
+        },
 
     ]
 
