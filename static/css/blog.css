@@ -1,0 +1,58 @@
+﻿.post {
+	background-color: #9eceff;
+	width = 500px;
+}
+.post p{
+	color : #202e29;
+	padding-left:500px;
+	padding-right:500px;
+	text-align:center;
+	height:200px;
+	overflow:hidden;
+}
+.overFlowClipped  {
+	height:200px;
+	overflow:hidden;
+}
+.post h2{
+	color : 018c86;
+}
+.readMoreButton {
+  display: inline-block;
+  border: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  align : center;
+  height:18px;
+  background-color: #9eceff;
+}
+
+.readMoreButton : active {
+	color : white;
+}
+
+.readMoreButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align : center;
+  transition: 0.3s;
+}
+.readMoreButton span:after {
+  content: '>>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.3s;
+}
+
+.readMoreButton:hover span {
+  padding-right: 25px;
+}
+
+.readMoreButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+

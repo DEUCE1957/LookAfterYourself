@@ -1,13 +1,18 @@
 {% extends 'MainApp/test_blog_base.html' %}
+{% load staticfiles %}
+{% block script %}
+<link rel="stylesheet" href="{% static "css/blog.css" %}"/>
+
+{% endblock %}
 {% block content %}
+<div class = "post">
 <h2><center>{{ post.title }}</center></h2>
     <!-- For some reason unable to make css work - so it's inline. Sorry. -->
-    <p style="padding-left:500px;padding-right:500px;text-align:center">{{ post.content }}</p>
-
+    <p>{{ post.content }}</p>
 <p>
     {% load disqus_tags %}
     {% disqus_dev %}
     {% disqus_show_comments %}
 </p>
-
+</div>
 {% endblock %}
