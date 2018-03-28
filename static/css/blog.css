@@ -1,21 +1,18 @@
-﻿.post {
+.post {
 	background-color: #9eceff;
-	width = 500px;
 }
 .post p{
 	color : #202e29;
 	padding-left:500px;
 	padding-right:500px;
 	text-align:center;
-	height:200px;
-	overflow:hidden;
 }
 .overFlowClipped  {
 	height:200px;
 	overflow:hidden;
 }
 .post h2{
-	color : 018c86;
+	color : #018c86;
 }
 .readMoreButton {
   display: inline-block;
