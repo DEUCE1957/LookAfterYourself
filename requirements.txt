@@ -245,7 +245,7 @@ pep8==1.7.0
 persistent==4.2.1
 pexpect==4.2.0
 pickleshare==0.7.4
-Pillow==3.3.0
+Pillow==6.2.0
 Pinax==0.9a2
 Pint==0.7.2
 pisa==3.0.33
