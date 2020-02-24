@@ -20,7 +20,7 @@ beanstalkc==0.4.0
 BeautifulSoup==3.2.1
 beautifulsoup4==4.4.1
 biopython==1.67
-bleach==1.4.3
+bleach==3.1.1
 blessings==1.6
 blinker==1.4
 boto==2.41.0
