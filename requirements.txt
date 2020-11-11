@@ -194,7 +194,7 @@ mistune==0.7.3
 mlpy==3.5.0
 mock==2.0.0
 mod-pywebsocket==0.7.9
-moin==1.9.8
+moin==1.9.11
 more-itertools==2.2
 morepath==0.16.2
 mots-vides==2015.5.11
