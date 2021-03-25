@@ -318,7 +318,7 @@ python-openid==2.2.5
 python-slugify==1.2.0
 pytz==2016.4
 PyVirtualDisplay==0.2
-PyYAML==3.11
+PyYAML==5.4
 pyzmq==15.3.0
 qrcode==5.3
 qtconsole==4.2.1
