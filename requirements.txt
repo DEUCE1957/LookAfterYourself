@@ -3,7 +3,7 @@ aggdraw==1.1.post20051010
 alabaster==0.7.9
 alembic==0.8.6
 aniso8601==1.1.0
-ansible==2.1.0.0
+ansible==2.9.20
 appdirs==1.4.2
 argh==0.26.2
 async==0.6.2
