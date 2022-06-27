@@ -331,7 +331,7 @@ redis==2.10.5
 reg==0.10
 regex==2017.2.8
 remix==2.4.0
-reportlab==3.3.0
+reportlab==3.5.55
 repoze.lru==0.6
 requests==2.10.0
 requests-cache==0.4.12
