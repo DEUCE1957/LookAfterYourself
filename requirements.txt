@@ -180,7 +180,7 @@ la==0.6.0
 linecache2==1.0.0
 Logbook==1.0.0
 lxml==3.6.0
-Mako==1.0.4
+Mako==1.2.2
 marisa-trie==0.7.2
 Markdown==2.6.6
 MarkupSafe==0.23
