@@ -416,7 +416,7 @@ virtualenv==15.1.0
 virtualenv-clone==0.2.6
 virtualenvwrapper==4.7.2
 visitor==0.1.3
-VTK==5.8.0
+VTK==9.0.1
 w3lib==1.14.2
 waitress==0.9.0
 Wand==0.4.3
