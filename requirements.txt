@@ -33,7 +33,7 @@ bzr==2.7.0
 cairocffi==0.7.2
 CairoSVG==1.0.22
 census==0.7
-certifi==2017.1.23
+certifi==2022.12.7
 cffi==1.7.0
 Chameleon==2.24
 chardet==2.3.0
